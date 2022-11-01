@@ -17,34 +17,36 @@ class SongBloc extends Bloc<SongEvent, SongState> {
   SongBloc(
     this.songRepository,
   ) : super(SongState.initial()) {
-    on<_GetLocalSongs>((event, emit) async {
-      // send loading state
-      emit(SongState(
-        songList:  [],
-        isPlaying: false,
-        isError: false,
-        isLoading: true,
-      ));
+    on<_GetLocalSongs>(
+      (event, emit) async {
+        // send loading state
+        emit(SongState(
+          songList: [],
+          isPlaying: false,
+          isError: false,
+          isLoading: true,
+        ));
 
-      // get songs
-      final songs = await songRepository.getSongsFromLocalStorage();
+        // get songs
+        final songs = await songRepository.getSongsFromLocalStorage();
 
-      emit(
-        songs.fold(
-          (failure) => SongState(
-            songList: [],
-            isPlaying: false,
-            isError: true,
-            isLoading: false,
+        emit(
+          songs.fold(
+            (failure) => SongState(
+              songList: [],
+              isPlaying: false,
+              isError: true,
+              isLoading: false,
+            ),
+            (songs) => SongState(
+              songList: songs,
+              isPlaying: false,
+              isError: false,
+              isLoading: false,
+            ),
           ),
-          (songs) => SongState(
-            songList: songs,
-            isPlaying: false,
-            isError: false,
-            isLoading: false,
-          ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
