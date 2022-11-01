@@ -45,5 +45,17 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         );
       },
     );
+
+    on<_PlayOrPauseSong>(
+      (event, emit) async {
+        // send loading state
+        emit(SongState(
+          songList: state.songList,
+          isPlaying: !state.isPlaying,
+          isError: false,
+          isLoading: false,
+        ));
+      },
+    );
   }
 }
