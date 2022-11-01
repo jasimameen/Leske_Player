@@ -5,7 +5,9 @@ import 'package:music_player/features/music_player/presentation/pages/all_songs.
 import 'features/music_player/presentation/bloc/song_bloc.dart';
 import 'injection_container.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
