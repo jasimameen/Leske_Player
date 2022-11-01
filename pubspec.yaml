@@ -15,11 +15,15 @@ dependencies:
   on_audio_query: ^2.6.1
   permission_handler: ^10.2.0
   flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  mockito: ^5.3.2
+  build_runner: 
 
 flutter:
   uses-material-design: true

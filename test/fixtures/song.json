@@ -1,0 +1,7 @@
+{
+  "title": "test title",
+  "artist": "test artist",
+  "_data": "test path",
+  "is_music": true,
+  "duration": 0
+}
