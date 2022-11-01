@@ -7,3 +7,5 @@ abstract class Failure extends Equatable {
 
 // General Failures
 class ClientFailure extends Failure {}
+
+class PermissionDeniedFailure extends Failure {}
