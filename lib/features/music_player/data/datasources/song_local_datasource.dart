@@ -19,9 +19,8 @@ class SongLocalDataSourceImpl implements SongLocalDataSource {
     try {
       final value = await onAudioQuery.querySongs();
       return value
-          .map((e) => SongModel.fromMap(e.getMap as Map<String, dynamic>))
+          .map((e) => SongModel.fromMap(Map.from(e.getMap)))
           .toList();
-      
     } on Exception {
       throw LocalDataException();
     }

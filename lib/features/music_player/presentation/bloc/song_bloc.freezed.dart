@@ -311,6 +311,7 @@ abstract class _PlayOrPauseSong implements SongEvent {
 /// @nodoc
 mixin _$SongState {
   List<Song> get songList => throw _privateConstructorUsedError;
+  Song? get currentSong => throw _privateConstructorUsedError;
   bool get isPlaying => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -326,7 +327,11 @@ abstract class $SongStateCopyWith<$Res> {
       _$SongStateCopyWithImpl<$Res, SongState>;
   @useResult
   $Res call(
-      {List<Song> songList, bool isPlaying, bool isError, bool isLoading});
+      {List<Song> songList,
+      Song? currentSong,
+      bool isPlaying,
+      bool isError,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -343,6 +348,7 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
   @override
   $Res call({
     Object? songList = null,
+    Object? currentSong = freezed,
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
@@ -352,6 +358,10 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
           ? _value.songList
           : songList // ignore: cast_nullable_to_non_nullable
               as List<Song>,
+      currentSong: freezed == currentSong
+          ? _value.currentSong
+          : currentSong // ignore: cast_nullable_to_non_nullable
+              as Song?,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -376,7 +386,11 @@ abstract class _$$_SongStateCopyWith<$Res> implements $SongStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {List<Song> songList, bool isPlaying, bool isError, bool isLoading});
+      {List<Song> songList,
+      Song? currentSong,
+      bool isPlaying,
+      bool isError,
+      bool isLoading});
 }
 
 /// @nodoc
@@ -391,6 +405,7 @@ class __$$_SongStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? songList = null,
+    Object? currentSong = freezed,
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
@@ -400,6 +415,10 @@ class __$$_SongStateCopyWithImpl<$Res>
           ? _value._songList
           : songList // ignore: cast_nullable_to_non_nullable
               as List<Song>,
+      currentSong: freezed == currentSong
+          ? _value.currentSong
+          : currentSong // ignore: cast_nullable_to_non_nullable
+              as Song?,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -421,6 +440,7 @@ class __$$_SongStateCopyWithImpl<$Res>
 class _$_SongState implements _SongState {
   _$_SongState(
       {required final List<Song> songList,
+      required this.currentSong,
       required this.isPlaying,
       required this.isError,
       required this.isLoading})
@@ -434,6 +454,8 @@ class _$_SongState implements _SongState {
   }
 
   @override
+  final Song? currentSong;
+  @override
   final bool isPlaying;
   @override
   final bool isError;
@@ -442,7 +464,7 @@ class _$_SongState implements _SongState {
 
   @override
   String toString() {
-    return 'SongState(songList: $songList, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading)';
+    return 'SongState(songList: $songList, currentSong: $currentSong, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading)';
   }
 
   @override
@@ -451,6 +473,8 @@ class _$_SongState implements _SongState {
         (other.runtimeType == runtimeType &&
             other is _$_SongState &&
             const DeepCollectionEquality().equals(other._songList, _songList) &&
+            (identical(other.currentSong, currentSong) ||
+                other.currentSong == currentSong) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -462,6 +486,7 @@ class _$_SongState implements _SongState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_songList),
+      currentSong,
       isPlaying,
       isError,
       isLoading);
@@ -476,12 +501,15 @@ class _$_SongState implements _SongState {
 abstract class _SongState implements SongState {
   factory _SongState(
       {required final List<Song> songList,
+      required final Song? currentSong,
       required final bool isPlaying,
       required final bool isError,
       required final bool isLoading}) = _$_SongState;
 
   @override
   List<Song> get songList;
+  @override
+  Song? get currentSong;
   @override
   bool get isPlaying;
   @override

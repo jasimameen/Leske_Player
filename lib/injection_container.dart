@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:music_player/core/utils/permission_handler.dart';
 import 'package:music_player/features/music_player/data/datasources/song_local_datasource.dart';
 import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
 import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
@@ -12,7 +14,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Fetures - Song
   // Bloc
-  sl.registerFactory(() => SongBloc(sl()));
+  sl.registerFactory(() => SongBloc(sl(), sl()));
 
 // usecases
   sl.registerLazySingleton(() => GetSongsFromLocalStorage(sl()));
@@ -27,5 +29,6 @@ Future<void> init() async {
 
   //! External
   sl.registerLazySingleton(() => OnAudioQuery());
-
+  sl.registerLazySingleton(() => StoragePermission());
+  sl.registerLazySingleton(() => AudioPlayer());
 }

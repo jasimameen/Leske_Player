@@ -4,13 +4,11 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:typed_data' as _i6;
+import 'dart:typed_data' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:music_player/core/utils/permission_handler.dart' as _i3;
-import 'package:on_audio_query/on_audio_query.dart' as _i5;
-import 'package:on_audio_query_platform_interface/details/on_audio_query_helper.dart'
-    as _i2;
+import 'package:on_audio_query/on_audio_query.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -63,7 +61,7 @@ class MockStoragePermission extends _i1.Mock implements _i3.StoragePermission {
 /// A class which mocks [OnAudioQuery].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOnAudioQuery extends _i1.Mock implements _i5.OnAudioQuery {
+class MockOnAudioQuery extends _i1.Mock implements _i2.OnAudioQuery {
   @override
   _i4.Future<List<_i2.SongModel>> querySongs({
     _i2.SongSortType? sortType,
@@ -222,7 +220,7 @@ class MockOnAudioQuery extends _i1.Mock implements _i5.OnAudioQuery {
         returnValueForMissingStub: _i4.Future<List<dynamic>>.value(<dynamic>[]),
       ) as _i4.Future<List<dynamic>>);
   @override
-  _i4.Future<_i6.Uint8List?> queryArtwork(
+  _i4.Future<_i5.Uint8List?> queryArtwork(
     int? id,
     _i2.ArtworkType? type, {
     _i2.ArtworkFormat? format,
@@ -242,9 +240,9 @@ class MockOnAudioQuery extends _i1.Mock implements _i5.OnAudioQuery {
             #quality: quality,
           },
         ),
-        returnValue: _i4.Future<_i6.Uint8List?>.value(),
-        returnValueForMissingStub: _i4.Future<_i6.Uint8List?>.value(),
-      ) as _i4.Future<_i6.Uint8List?>);
+        returnValue: _i4.Future<_i5.Uint8List?>.value(),
+        returnValueForMissingStub: _i4.Future<_i5.Uint8List?>.value(),
+      ) as _i4.Future<_i5.Uint8List?>);
   @override
   _i4.Future<List<_i2.SongModel>> queryFromFolder(
     String? path, {
