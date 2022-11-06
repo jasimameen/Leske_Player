@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/features/music_player/presentation/pages/all_songs.dart';
+import 'package:music_player/features/music_player/presentation/pages/all_songs_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'features/music_player/presentation/bloc/song_bloc.dart';
