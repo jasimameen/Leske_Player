@@ -13,6 +13,7 @@ part 'song_state.dart';
 class SongBloc extends Bloc<SongEvent, SongState> {
   final SongRepository songRepository;
   final AudioPlayer audioPlayer;
+
   SongBloc(
     this.songRepository,
     this.audioPlayer,
@@ -52,11 +53,38 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
         // play and pause audio
         state.isPlaying ? audioPlayer.pause() : audioPlayer.play();
-        emit(state.copyWith(
-          isPlaying: !state.isPlaying,
-          currentSong: event.song,
-        ));
+        emit(
+          state.copyWith(isPlaying: !state.isPlaying, currentSong: event.song),
+        );
       },
     );
+
+    on<_PlayNextSong>(
+      (event, emit) async {
+        final currentSongIndex = state.songList.indexOf(state.currentSong!);
+
+        final nextSong = currentSongIndex != state.songList.length - 1
+            ? state.songList[currentSongIndex + 1]
+            : state.songList.first;
+
+        audioPlayer.setUrl(nextSong.path);
+        audioPlayer.play();
+
+        emit(state.copyWith(isPlaying: true, currentSong: nextSong));
+      },
+    );
+
+    on<_PlayPreviousSong>((event, emit) {
+      final currentSongIndex = state.songList.indexOf(state.currentSong!);
+
+      final previousSong = currentSongIndex != 0
+          ? state.songList[currentSongIndex - 1]
+          : state.songList.last;
+
+      audioPlayer.setUrl(previousSong.path);
+      audioPlayer.play();
+
+      emit(state.copyWith(isPlaying: true, currentSong: previousSong));
+    });
   }
 }

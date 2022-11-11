@@ -20,18 +20,24 @@ mixin _$SongEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$SongEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +125,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
   }) {
     return getLocalSongs();
   }
@@ -122,6 +136,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
   }) {
     return getLocalSongs?.call();
   }
@@ -131,6 +147,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
     required TResult orElse(),
   }) {
     if (getLocalSongs != null) {
@@ -144,6 +162,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
   }) {
     return getLocalSongs(this);
   }
@@ -153,6 +173,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
   }) {
     return getLocalSongs?.call(this);
   }
@@ -162,6 +184,8 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
     required TResult orElse(),
   }) {
     if (getLocalSongs != null) {
@@ -241,6 +265,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
   }) {
     return playOrPauseSong(song);
   }
@@ -250,6 +276,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
   }) {
     return playOrPauseSong?.call(song);
   }
@@ -259,6 +287,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
     required TResult orElse(),
   }) {
     if (playOrPauseSong != null) {
@@ -272,6 +302,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
   }) {
     return playOrPauseSong(this);
   }
@@ -281,6 +313,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
   }) {
     return playOrPauseSong?.call(this);
   }
@@ -290,6 +324,8 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
     required TResult orElse(),
   }) {
     if (playOrPauseSong != null) {
@@ -306,6 +342,234 @@ abstract class _PlayOrPauseSong implements SongEvent {
   @JsonKey(ignore: true)
   _$$_PlayOrPauseSongCopyWith<_$_PlayOrPauseSong> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_PlayNextSongCopyWith<$Res> {
+  factory _$$_PlayNextSongCopyWith(
+          _$_PlayNextSong value, $Res Function(_$_PlayNextSong) then) =
+      __$$_PlayNextSongCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_PlayNextSongCopyWithImpl<$Res>
+    extends _$SongEventCopyWithImpl<$Res, _$_PlayNextSong>
+    implements _$$_PlayNextSongCopyWith<$Res> {
+  __$$_PlayNextSongCopyWithImpl(
+      _$_PlayNextSong _value, $Res Function(_$_PlayNextSong) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_PlayNextSong implements _PlayNextSong {
+  const _$_PlayNextSong();
+
+  @override
+  String toString() {
+    return 'SongEvent.playNextSong()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_PlayNextSong);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLocalSongs,
+    required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
+  }) {
+    return playNextSong();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getLocalSongs,
+    TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
+  }) {
+    return playNextSong?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLocalSongs,
+    TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
+    required TResult orElse(),
+  }) {
+    if (playNextSong != null) {
+      return playNextSong();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLocalSongs value) getLocalSongs,
+    required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
+  }) {
+    return playNextSong(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetLocalSongs value)? getLocalSongs,
+    TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
+  }) {
+    return playNextSong?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLocalSongs value)? getLocalSongs,
+    TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
+    required TResult orElse(),
+  }) {
+    if (playNextSong != null) {
+      return playNextSong(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlayNextSong implements SongEvent {
+  const factory _PlayNextSong() = _$_PlayNextSong;
+}
+
+/// @nodoc
+abstract class _$$_PlayPreviousSongCopyWith<$Res> {
+  factory _$$_PlayPreviousSongCopyWith(
+          _$_PlayPreviousSong value, $Res Function(_$_PlayPreviousSong) then) =
+      __$$_PlayPreviousSongCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_PlayPreviousSongCopyWithImpl<$Res>
+    extends _$SongEventCopyWithImpl<$Res, _$_PlayPreviousSong>
+    implements _$$_PlayPreviousSongCopyWith<$Res> {
+  __$$_PlayPreviousSongCopyWithImpl(
+      _$_PlayPreviousSong _value, $Res Function(_$_PlayPreviousSong) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_PlayPreviousSong implements _PlayPreviousSong {
+  const _$_PlayPreviousSong();
+
+  @override
+  String toString() {
+    return 'SongEvent.playPreviousSong()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_PlayPreviousSong);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLocalSongs,
+    required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
+  }) {
+    return playPreviousSong();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getLocalSongs,
+    TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
+  }) {
+    return playPreviousSong?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLocalSongs,
+    TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
+    required TResult orElse(),
+  }) {
+    if (playPreviousSong != null) {
+      return playPreviousSong();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLocalSongs value) getLocalSongs,
+    required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
+  }) {
+    return playPreviousSong(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetLocalSongs value)? getLocalSongs,
+    TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
+  }) {
+    return playPreviousSong?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLocalSongs value)? getLocalSongs,
+    TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
+    required TResult orElse(),
+  }) {
+    if (playPreviousSong != null) {
+      return playPreviousSong(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlayPreviousSong implements SongEvent {
+  const factory _PlayPreviousSong() = _$_PlayPreviousSong;
 }
 
 /// @nodoc
