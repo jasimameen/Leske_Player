@@ -49,19 +49,19 @@ class SongBloc extends Bloc<SongEvent, SongState> {
     on<_ShowSongDetails>(
       (event, emit) async {
         if (event.song != state.currentSong) {
-          Navigation.instance.pushNamed(
+          Navigation.pushNamed(
             NowPlayingPage.routeName,
             arguments: event.song,
           );
         } else {
-          Navigation.instance.pushNamed(NowPlayingPage.routeName);
+          Navigation.pushNamed(NowPlayingPage.routeName);
         }
       },
     );
 
     on<_PlayOrPauseSong>(
       (event, emit) async {
-        if (state.currentSong == null || state.currentSong != event.song) {
+        if (state.currentSong != event.song) {
           audioPlayer.setUrl(event.song.path);
         }
 
@@ -115,7 +115,7 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
     on<_SeekTo>((event, emit) {
       audioPlayer.seek(event.duration);
-      // emit(state.copyWith(positionStream: Stream.value(event.duration)));
+      emit(state.copyWith(positionStream: Stream.value(event.duration)));
     });
   }
 }

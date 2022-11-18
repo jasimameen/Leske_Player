@@ -39,13 +39,12 @@ class AllSongsPage extends StatelessWidget {
                 final song = state.songList[index];
                 final isPlaying = state.currentSong == song;
                 return ListTile(
-                  
                   // album art
                   leading: Container(
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      // borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
@@ -81,7 +80,10 @@ class AllSongsPage extends StatelessWidget {
                     },
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, NowPlayingPage.routeName);
+                    // Navigator.pushNamed(context, NowPlayingPage.routeName);
+                    context.read<SongBloc>().add(
+                          SongEvent.showSongDetails(song),
+                        );
                   },
                 );
               },

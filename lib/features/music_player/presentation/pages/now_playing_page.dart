@@ -10,10 +10,8 @@ class NowPlayingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // gets the passed song when navigating other it will be null
-    final Song? songArgument =
-        ModalRoute.of(context)?.settings.arguments as Song?;
+    Song? songArgument = ModalRoute.of(context)!.settings.arguments as Song?;
 
     return Scaffold(
       body: SafeArea(
@@ -28,6 +26,7 @@ class NowPlayingPage extends StatelessWidget {
             // show passed song when route argument not null.
             // other wise shows the current playing song
             final song = songArgument ?? state.currentSong;
+            bool isPlaying = state.isPlaying;
 
             if (state.isLoading) {
               return const Center(
@@ -55,9 +54,10 @@ class NowPlayingPage extends StatelessWidget {
                         spreadRadius: 5,
                       ),
                     ],
-                    image:const DecorationImage(
+                    image: const DecorationImage(
                       // image: MemoryImage(song.albumArt), TODO: show album Art
-                      image: NetworkImage('https://source.unsplash.com/random/900%C3%97700/?lofi'),
+                      image: NetworkImage(
+                          'https://source.unsplash.com/random/900%C3%97700/?lofi'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -101,6 +101,7 @@ class NowPlayingPage extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.skip_previous),
                       onPressed: () {
+                        songArgument = null;
                         context
                             .read<SongBloc>()
                             .add(const SongEvent.playPreviousSong());
@@ -110,12 +111,13 @@ class NowPlayingPage extends StatelessWidget {
                     // Play Or Pause
                     IconButton(
                       onPressed: () {
+                        songArgument = null;
                         context
                             .read<SongBloc>()
                             .add(SongEvent.playOrPauseSong(song));
                       },
                       icon: Icon(
-                        state.isPlaying
+                        isPlaying
                             ? Icons.pause_outlined
                             : Icons.play_arrow_rounded,
                       ),
@@ -124,6 +126,7 @@ class NowPlayingPage extends StatelessWidget {
                     // nextSong
                     IconButton(
                       onPressed: () {
+                        songArgument = null;
                         context
                             .read<SongBloc>()
                             .add(const SongEvent.playNextSong());
