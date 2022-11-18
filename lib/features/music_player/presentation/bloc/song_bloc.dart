@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
@@ -45,6 +46,16 @@ class SongBloc extends Bloc<SongEvent, SongState> {
       },
     );
 
+    on<_ShowSongDetails>(
+      (event, emit) async {
+        if (event.song != state.currentSong) {
+          // navigate with new song
+        } else {
+          // navigate with current song
+        }
+      },
+    );
+
     on<_PlayOrPauseSong>(
       (event, emit) async {
         if (state.currentSong == null || state.currentSong != event.song) {
@@ -53,9 +64,11 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
         // play and pause audio
         state.isPlaying ? audioPlayer.pause() : audioPlayer.play();
-        emit(
-          state.copyWith(isPlaying: !state.isPlaying, currentSong: event.song),
-        );
+        emit(state.copyWith(
+          isPlaying: !state.isPlaying,
+          currentSong: event.song,
+          positionStream: audioPlayer.positionStream,
+        ));
       },
     );
 
@@ -70,7 +83,13 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         audioPlayer.setUrl(nextSong.path);
         audioPlayer.play();
 
-        emit(state.copyWith(isPlaying: true, currentSong: nextSong));
+        emit(
+          state.copyWith(
+            isPlaying: true,
+            currentSong: nextSong,
+            positionStream: audioPlayer.positionStream,
+          ),
+        );
       },
     );
 
@@ -84,7 +103,16 @@ class SongBloc extends Bloc<SongEvent, SongState> {
       audioPlayer.setUrl(previousSong.path);
       audioPlayer.play();
 
-      emit(state.copyWith(isPlaying: true, currentSong: previousSong));
+      emit(state.copyWith(
+        isPlaying: true,
+        currentSong: previousSong,
+        positionStream: audioPlayer.positionStream,
+      ));
+    });
+
+    on<_SeekTo>((event, emit) {
+      audioPlayer.seek(event.duration);
+      // emit(state.copyWith(positionStream: Stream.value(event.duration)));
     });
   }
 }

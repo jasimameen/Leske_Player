@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_player/features/music_player/presentation/pages/all_songs_page.dart';
+import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'features/music_player/presentation/bloc/song_bloc.dart';
@@ -22,21 +23,11 @@ class MyApp extends StatelessWidget {
       create: (context) => sl<SongBloc>(),
       child: MaterialApp(
         title: 'Music Player',
-        // home: Scaffold(
-        //   appBar: AppBar(
-        //     title: const Text('Music Player'),
-        //   ),
-        //   floatingActionButton: FloatingActionButton(
-        //     onPressed: () {
-        //       Navigator.of(context).push(
-        //         MaterialPageRoute(
-        //           builder: (context) => const AllSongsPage(),
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ),
-        home: AllSongsPage(),
+        home: const AllSongsPage(),
+        routes: {
+          AllSongsPage.routeName: (context) => const AllSongsPage(),
+          NowPlayingPage.routeName: (context) => const NowPlayingPage(),
+        },
       ),
     );
   }
