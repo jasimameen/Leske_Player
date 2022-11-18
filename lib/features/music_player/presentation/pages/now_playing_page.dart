@@ -55,9 +55,9 @@ class NowPlayingPage extends StatelessWidget {
                         spreadRadius: 5,
                       ),
                     ],
-                    image: DecorationImage(
+                    image:const DecorationImage(
                       // image: MemoryImage(song.albumArt), TODO: show album Art
-                      image: const NetworkImage('https://source.unsplash.com/random/900%C3%97700/?music'),
+                      image: NetworkImage('https://source.unsplash.com/random/900%C3%97700/?lofi'),
                       fit: BoxFit.cover,
                     ),
                   ),
