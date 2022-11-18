@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_player/core/utils/navigation.dart';
+import 'package:music_player/features/music_player/presentation/pages/all_songs_page.dart';
+import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-void main() {
+import 'features/music_player/presentation/bloc/song_bloc.dart';
+import 'injection_container.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
+  await Permission.storage.request();
   runApp(const MyApp());
 }
 
@@ -9,15 +20,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Music Player',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Music Player'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+    return BlocProvider(
+      create: (context) => sl<SongBloc>(),
+      child: MaterialApp(
+        navigatorKey: Navigation.instance.initState,
+        title: 'Music Player',
+        home: const AllSongsPage(),
+        routes: {
+          AllSongsPage.routeName: (context) => const AllSongsPage(),
+          NowPlayingPage.routeName: (context) => const NowPlayingPage(),
+        },
       ),
     );
   }

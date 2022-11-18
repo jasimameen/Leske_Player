@@ -18,6 +18,8 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   freezed_annotation: ^2.2.0
+  get_it: ^7.2.0
+  just_audio: ^0.9.30
 
 dev_dependencies:
   flutter_test:

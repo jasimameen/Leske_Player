@@ -1,3 +1,4 @@
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 /// This methods Handle all Permission From the Device,
@@ -45,7 +46,7 @@ abstract class PermissionHandler {
 class StoragePermission extends PermissionHandler {
   /// If the user granted this permission.
   @override
-  Future<bool> get isGranded => Permission.storage.isGranted;
+  Future<bool> get isGranded =>  OnAudioQuery().permissionsStatus();
 
   /// If the user denied this permission.
   @override
@@ -53,7 +54,9 @@ class StoragePermission extends PermissionHandler {
 
   @override
   Future<bool> requestPermissions() async {
-    final permissionStatus = await Permission.storage.request();
-    return permissionStatus == PermissionStatus.granted;
+    return await OnAudioQuery().permissionsRequest();
+
+    // final permissionStatus = await Permission.storage.request();
+    // return permissionStatus == PermissionStatus.granted;
   }
 }
