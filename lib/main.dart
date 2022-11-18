@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_player/core/utils/navigation.dart';
 import 'package:music_player/features/music_player/presentation/pages/all_songs_page.dart';
 import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<SongBloc>(),
       child: MaterialApp(
+        navigatorKey: Navigation.instance.initState,
         title: 'Music Player',
         home: const AllSongsPage(),
         routes: {

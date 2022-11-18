@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:music_player/core/utils/navigation.dart';
 
 import 'package:music_player/features/music_player/domain/entities/song.dart';
 import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
+import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 
 part 'song_bloc.freezed.dart';
 part 'song_event.dart';
@@ -49,9 +51,12 @@ class SongBloc extends Bloc<SongEvent, SongState> {
     on<_ShowSongDetails>(
       (event, emit) async {
         if (event.song != state.currentSong) {
-          // navigate with new song
+          Navigation.instance.pushNamed(
+            NowPlayingPage.routeName,
+            arguments: event.song,
+          );
         } else {
-          // navigate with current song
+          Navigation.instance.pushNamed(NowPlayingPage.routeName);
         }
       },
     );

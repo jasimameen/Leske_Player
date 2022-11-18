@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_player/features/music_player/domain/entities/song.dart';
 
 import '../bloc/song_bloc.dart';
 
@@ -9,15 +10,24 @@ class NowPlayingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // gets the passed song when navigating other it will be null
+    final Song? songArgument =
+        ModalRoute.of(context)?.settings.arguments as Song?;
+
     return Scaffold(
       body: SafeArea(
         child: BlocBuilder<SongBloc, SongState>(
           buildWhen: (previous, current) {
+            final currentSong = songArgument ?? current.currentSong;
+
             // only rebuilds when the current song changes
-            return previous.currentSong != current.currentSong;
+            return previous.currentSong != currentSong;
           },
           builder: (context, state) {
-            final song = state.currentSong;
+            // show passed song when route argument not null.
+            // other wise shows the current playing song
+            final song = songArgument ?? state.currentSong;
 
             if (state.isLoading) {
               return const Center(
@@ -45,10 +55,11 @@ class NowPlayingPage extends StatelessWidget {
                         spreadRadius: 5,
                       ),
                     ],
-                    // image: DecorationImage(
-                    //   image: MemoryImage(song.albumArt),
-                    //   fit: BoxFit.cover,
-                    // ),
+                    image: DecorationImage(
+                      // image: MemoryImage(song.albumArt), TODO: show album Art
+                      image: const NetworkImage('https://source.unsplash.com/random/900%C3%97700/?music'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   child: FittedBox(
                     fit: BoxFit.fitHeight,
@@ -73,7 +84,9 @@ class NowPlayingPage extends StatelessWidget {
                       max: song.duration.toDouble(),
                       onChanged: (value) {
                         BlocProvider.of<SongBloc>(context).add(
-                          SongEvent.seekTo(Duration(seconds: value.toInt()),),
+                          SongEvent.seekTo(
+                            Duration(seconds: value.toInt()),
+                          ),
                         );
                       },
                     );
