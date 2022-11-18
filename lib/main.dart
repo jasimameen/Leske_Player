@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<SongBloc>(),
       child: MaterialApp(
-        navigatorKey: Navigation.instance.initState,
+        navigatorKey: Navigation.initState(),
         title: 'Music Player',
         home: const AllSongsPage(),
         routes: {
