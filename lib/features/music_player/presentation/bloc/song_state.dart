@@ -8,7 +8,9 @@ class SongState with _$SongState {
     required bool isPlaying,
     required bool isError,
     required bool isLoading,
+    required Stream<Duration?> durationStream,
     required Stream<Duration> positionStream,
+    required Stream<Duration> buffferPositionStream,
   }) = _SongState;
 
   factory SongState.initial() => SongState(
@@ -17,6 +19,8 @@ class SongState with _$SongState {
         isPlaying: false,
         isError: false,
         isLoading: false,
+        durationStream: Stream.value(Duration.zero),
         positionStream: Stream.value(Duration.zero),
+        buffferPositionStream: Stream.value(Duration.zero),
       );
 }

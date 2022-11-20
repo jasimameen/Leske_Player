@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 
 import '../bloc/song_bloc.dart';
+
+String get albumart => 'https://source.unsplash.com/random/900%C3%97700/?lofi';
 
 class AllSongsPage extends StatelessWidget {
   static const routeName = "/all-songs";
@@ -52,10 +53,11 @@ class AllSongsPage extends StatelessWidget {
                           spreadRadius: 2,
                         ),
                       ],
-                      // image: DecorationImage(
-                      //   image: MemoryImage(song.albumArt),
-                      //   fit: BoxFit.cover,
-                      // ),
+                      image: DecorationImage(
+                        //   image: MemoryImage(song.albumArt),
+                        image: NetworkImage(albumart),
+                        fit: BoxFit.cover,
+                      ),
                       shape: BoxShape.circle,
                     ),
                     child: FittedBox(

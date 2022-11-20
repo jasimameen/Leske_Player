@@ -952,7 +952,10 @@ mixin _$SongState {
   bool get isPlaying => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  Stream<Duration?> get durationStream => throw _privateConstructorUsedError;
   Stream<Duration> get positionStream => throw _privateConstructorUsedError;
+  Stream<Duration> get buffferPositionStream =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SongStateCopyWith<SongState> get copyWith =>
@@ -970,7 +973,9 @@ abstract class $SongStateCopyWith<$Res> {
       bool isPlaying,
       bool isError,
       bool isLoading,
-      Stream<Duration> positionStream});
+      Stream<Duration?> durationStream,
+      Stream<Duration> positionStream,
+      Stream<Duration> buffferPositionStream});
 }
 
 /// @nodoc
@@ -991,7 +996,9 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
+    Object? durationStream = null,
     Object? positionStream = null,
+    Object? buffferPositionStream = null,
   }) {
     return _then(_value.copyWith(
       songList: null == songList
@@ -1014,9 +1021,17 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      durationStream: null == durationStream
+          ? _value.durationStream
+          : durationStream // ignore: cast_nullable_to_non_nullable
+              as Stream<Duration?>,
       positionStream: null == positionStream
           ? _value.positionStream
           : positionStream // ignore: cast_nullable_to_non_nullable
+              as Stream<Duration>,
+      buffferPositionStream: null == buffferPositionStream
+          ? _value.buffferPositionStream
+          : buffferPositionStream // ignore: cast_nullable_to_non_nullable
               as Stream<Duration>,
     ) as $Val);
   }
@@ -1035,7 +1050,9 @@ abstract class _$$_SongStateCopyWith<$Res> implements $SongStateCopyWith<$Res> {
       bool isPlaying,
       bool isError,
       bool isLoading,
-      Stream<Duration> positionStream});
+      Stream<Duration?> durationStream,
+      Stream<Duration> positionStream,
+      Stream<Duration> buffferPositionStream});
 }
 
 /// @nodoc
@@ -1054,7 +1071,9 @@ class __$$_SongStateCopyWithImpl<$Res>
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
+    Object? durationStream = null,
     Object? positionStream = null,
+    Object? buffferPositionStream = null,
   }) {
     return _then(_$_SongState(
       songList: null == songList
@@ -1077,9 +1096,17 @@ class __$$_SongStateCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      durationStream: null == durationStream
+          ? _value.durationStream
+          : durationStream // ignore: cast_nullable_to_non_nullable
+              as Stream<Duration?>,
       positionStream: null == positionStream
           ? _value.positionStream
           : positionStream // ignore: cast_nullable_to_non_nullable
+              as Stream<Duration>,
+      buffferPositionStream: null == buffferPositionStream
+          ? _value.buffferPositionStream
+          : buffferPositionStream // ignore: cast_nullable_to_non_nullable
               as Stream<Duration>,
     ));
   }
@@ -1094,7 +1121,9 @@ class _$_SongState implements _SongState {
       required this.isPlaying,
       required this.isError,
       required this.isLoading,
-      required this.positionStream})
+      required this.durationStream,
+      required this.positionStream,
+      required this.buffferPositionStream})
       : _songList = songList;
 
   final List<Song> _songList;
@@ -1113,11 +1142,15 @@ class _$_SongState implements _SongState {
   @override
   final bool isLoading;
   @override
+  final Stream<Duration?> durationStream;
+  @override
   final Stream<Duration> positionStream;
+  @override
+  final Stream<Duration> buffferPositionStream;
 
   @override
   String toString() {
-    return 'SongState(songList: $songList, currentSong: $currentSong, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading, positionStream: $positionStream)';
+    return 'SongState(songList: $songList, currentSong: $currentSong, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading, durationStream: $durationStream, positionStream: $positionStream, buffferPositionStream: $buffferPositionStream)';
   }
 
   @override
@@ -1133,8 +1166,12 @@ class _$_SongState implements _SongState {
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.durationStream, durationStream) ||
+                other.durationStream == durationStream) &&
             (identical(other.positionStream, positionStream) ||
-                other.positionStream == positionStream));
+                other.positionStream == positionStream) &&
+            (identical(other.buffferPositionStream, buffferPositionStream) ||
+                other.buffferPositionStream == buffferPositionStream));
   }
 
   @override
@@ -1145,7 +1182,9 @@ class _$_SongState implements _SongState {
       isPlaying,
       isError,
       isLoading,
-      positionStream);
+      durationStream,
+      positionStream,
+      buffferPositionStream);
 
   @JsonKey(ignore: true)
   @override
@@ -1161,7 +1200,9 @@ abstract class _SongState implements SongState {
       required final bool isPlaying,
       required final bool isError,
       required final bool isLoading,
-      required final Stream<Duration> positionStream}) = _$_SongState;
+      required final Stream<Duration?> durationStream,
+      required final Stream<Duration> positionStream,
+      required final Stream<Duration> buffferPositionStream}) = _$_SongState;
 
   @override
   List<Song> get songList;
@@ -1174,7 +1215,11 @@ abstract class _SongState implements SongState {
   @override
   bool get isLoading;
   @override
+  Stream<Duration?> get durationStream;
+  @override
   Stream<Duration> get positionStream;
+  @override
+  Stream<Duration> get buffferPositionStream;
   @override
   @JsonKey(ignore: true)
   _$$_SongStateCopyWith<_$_SongState> get copyWith =>
