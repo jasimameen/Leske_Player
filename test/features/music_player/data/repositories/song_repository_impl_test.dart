@@ -28,6 +28,7 @@ void main() {
 
   const tSongModels = [
     SongModel(
+      id: 1,
       title: "test title",
       artist: "test artist",
       path: "test path",

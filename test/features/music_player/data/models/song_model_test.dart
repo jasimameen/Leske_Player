@@ -8,6 +8,7 @@ import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
   const tSongModel = SongModel(
+    id: 1,
     title: "test title",
     artist: "test artist",
     path: "test path",
