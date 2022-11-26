@@ -22,6 +22,7 @@ void main() {
   // testObjects
   const tSongs = [
     Song(
+      id: 1,
       title: "test title",
       artist: "test artist",
       path: "test path",

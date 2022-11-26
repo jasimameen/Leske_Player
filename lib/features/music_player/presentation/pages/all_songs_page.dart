@@ -1,8 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 
 import '../bloc/song_bloc.dart';
+
+List randomList = List.generate(10, (index) {
+  String query = index.isEven ? "lofi,happy" : "night,moon";
+  return 'https://source.unsplash.com/random/900%C3%97700/?lofi,$query';
+});
+
+String get albumart => randomList[Random().nextInt(randomList.length)];
 
 class AllSongsPage extends StatelessWidget {
   static const routeName = "/all-songs";
@@ -38,6 +46,7 @@ class AllSongsPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final song = state.songList[index];
                 final isPlaying = state.currentSong == song;
+
                 return ListTile(
                   // album art
                   leading: Container(
@@ -52,10 +61,11 @@ class AllSongsPage extends StatelessWidget {
                           spreadRadius: 2,
                         ),
                       ],
-                      // image: DecorationImage(
-                      //   image: MemoryImage(song.albumArt),
-                      //   fit: BoxFit.cover,
-                      // ),
+                      image: DecorationImage(
+                        //   image: MemoryImage(song.albumArt),
+                        image: NetworkImage(albumart),
+                        fit: BoxFit.cover,
+                      ),
                       shape: BoxShape.circle,
                     ),
                     child: FittedBox(

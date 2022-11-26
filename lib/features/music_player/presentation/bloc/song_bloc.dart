@@ -19,6 +19,15 @@ class SongBloc extends Bloc<SongEvent, SongState> {
     this.songRepository,
     this.audioPlayer,
   ) : super(SongState.initial()) {
+    // updates the postion, buffer and duration in the state
+    SongState updatePositionStream() {
+      return state.copyWith(
+        positionStream: audioPlayer.positionStream,
+        durationStream: audioPlayer.durationStream,
+        buffferPositionStream: audioPlayer.bufferedPositionStream,
+      );
+    }
+
     on<_GetLocalSongs>(
       (event, emit) async {
         // send loading state
@@ -63,14 +72,24 @@ class SongBloc extends Bloc<SongEvent, SongState> {
       (event, emit) async {
         if (state.currentSong != event.song) {
           audioPlayer.setUrl(event.song.path);
+          audioPlayer.play();
+
+          updatePositionStream();
+          final bool plySta = audioPlayer.playing;
+          emit(state.copyWith(
+            isPlaying: plySta,
+            currentSong: event.song,
+          ));
+          return;
         }
+
+        emit(updatePositionStream());
 
         // play and pause audio
         state.isPlaying ? audioPlayer.pause() : audioPlayer.play();
         emit(state.copyWith(
-          isPlaying: !state.isPlaying,
+          isPlaying: audioPlayer.playing,
           currentSong: event.song,
-          positionStream: audioPlayer.positionStream,
         ));
       },
     );
@@ -86,11 +105,12 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         audioPlayer.setUrl(nextSong.path);
         audioPlayer.play();
 
+        updatePositionStream();
+
         emit(
           state.copyWith(
-            isPlaying: true,
+            isPlaying: audioPlayer.playing,
             currentSong: nextSong,
-            positionStream: audioPlayer.positionStream,
           ),
         );
       },
@@ -106,16 +126,18 @@ class SongBloc extends Bloc<SongEvent, SongState> {
       audioPlayer.setUrl(previousSong.path);
       audioPlayer.play();
 
+      updatePositionStream();
+
       emit(state.copyWith(
-        isPlaying: true,
+        isPlaying: audioPlayer.playing,
         currentSong: previousSong,
-        positionStream: audioPlayer.positionStream,
       ));
     });
 
     on<_SeekTo>((event, emit) {
       audioPlayer.seek(event.duration);
-      emit(state.copyWith(positionStream: Stream.value(event.duration)));
+      emit(updatePositionStream());
+      audioPlayer.play();
     });
   }
 }

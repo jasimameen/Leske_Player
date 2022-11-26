@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_player/features/music_player/domain/entities/song.dart';
+import 'package:music_player/features/music_player/presentation/widgets/seek_bar.dart';
+import 'package:music_player/core/utils/get_image_provider.dart';
 
 import '../bloc/song_bloc.dart';
 
@@ -54,18 +56,9 @@ class NowPlayingPage extends StatelessWidget {
                         spreadRadius: 5,
                       ),
                     ],
-                    image: const DecorationImage(
-                      // image: MemoryImage(song.albumArt), TODO: show album Art
-                      image: NetworkImage(
-                          'https://source.unsplash.com/random/900%C3%97700/?lofi'),
+                    image: DecorationImage(
+                      image: getImageProvider(song),
                       fit: BoxFit.cover,
-                    ),
-                  ),
-                  child: FittedBox(
-                    fit: BoxFit.fitHeight,
-                    alignment: Alignment.center,
-                    child: Center(
-                      child: Icon(Icons.music_note, color: Colors.grey[400]),
                     ),
                   ),
                 ),
@@ -74,23 +67,13 @@ class NowPlayingPage extends StatelessWidget {
                 Text(song.title),
 
                 // Seek Slider stream
-                StreamBuilder<Duration>(
-                  stream: state.positionStream,
-                  builder: (context, snapshot) {
-                    final position = snapshot.data ?? Duration.zero;
-                    return Slider(
-                      value: position.inSeconds.toDouble(),
-                      min: 0,
-                      max: song.duration.toDouble(),
-                      onChanged: (value) {
-                        BlocProvider.of<SongBloc>(context).add(
-                          SongEvent.seekTo(
-                            Duration(seconds: value.toInt()),
-                          ),
-                        );
-                      },
-                    );
-                  },
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: SeekBar(
+                    positionStream: state.positionStream,
+                    bufferPositionStream: state.buffferPositionStream,
+                    durationStream: state.durationStream,
+                  ),
                 ),
 
                 // controller

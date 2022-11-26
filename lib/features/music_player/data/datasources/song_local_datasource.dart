@@ -18,9 +18,9 @@ class SongLocalDataSourceImpl implements SongLocalDataSource {
   Future<List<SongModel>> getAllSongsFromLocalStorage() async {
     try {
       final value = await onAudioQuery.querySongs();
-      return value
-          .map((e) => SongModel.fromMap(Map.from(e.getMap)))
-          .toList();
+      return value.map((e) {
+        return SongModel.fromMap(Map.from(e.getMap));
+      }).toList();
     } on Exception {
       throw LocalDataException();
     }
