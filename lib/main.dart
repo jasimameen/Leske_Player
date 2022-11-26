@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/core/utils/navigation.dart';
-import 'package:music_player/features/music_player/presentation/pages/all_songs_page.dart';
-import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'core/utils/navigation.dart';
 import 'features/music_player/presentation/bloc/song_bloc.dart';
+import 'features/music_player/presentation/pages/details_page.dart';
 import 'injection_container.dart';
+import 'routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,11 +25,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: Navigation.initState(),
         title: 'Music Player',
-        home: const AllSongsPage(),
-        routes: {
-          AllSongsPage.routeName: (context) => const AllSongsPage(),
-          NowPlayingPage.routeName: (context) => const NowPlayingPage(),
-        },
+        initialRoute: DetailsPage.routeName,
+
+        // all the route in this app
+        routes: routes,
       ),
     );
   }
