@@ -10,8 +10,8 @@ import 'routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await init();
-  await Permission.storage.request();
+  // await init();
+  // await Permission.storage.request();
   runApp(const MyApp());
 }
 
@@ -23,11 +23,28 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<SongBloc>(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+
+        // navigation state
         navigatorKey: Navigation.initState(),
         title: 'Music Player',
-        initialRoute: DetailsPage.routeName,
+
+        // -- theme --
+        themeMode: ThemeMode.dark,
+        // dark theme
+        darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+          scaffoldBackgroundColor: const Color(0xff3D1E4E),
+          primaryColor: const Color(0xffE125B0),
+          iconTheme: const IconThemeData(color: Colors.white),
+
+          // text theme
+          textTheme: ThemeData.dark().textTheme.copyWith(
+                caption: const TextStyle(color: Color(0xff877A7C)),
+              ),
+        ),
 
         // all the route in this app
+        initialRoute: DetailsPage.routeName,
         routes: routes,
       ),
     );
