@@ -26,28 +26,7 @@ class DetailsPage extends StatelessWidget {
             ),
 
             // album art
-            Container(
-              height: 200,
-              width: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  albumArt,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            const _AlbumArt(),
 
             // MetaData
             Column(
@@ -64,14 +43,7 @@ class DetailsPage extends StatelessWidget {
             ),
 
             // SeekBar
-            Container(
-              height: 5,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            const _SeekBar(),
 
             // Controllers
             const _MusicControllers(),
@@ -85,6 +57,93 @@ class DetailsPage extends StatelessWidget {
   }
 }
 
+class _AlbumArt extends StatelessWidget {
+  const _AlbumArt({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(50),
+      child: AspectRatio(
+        aspectRatio: 1 / 1,
+        child: Container(
+          decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: NetworkImage(albumArt),
+              fit: BoxFit.cover,
+            ),
+            shape: BoxShape.circle,
+            // add gradient to image
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xffE125B0),
+                Color(0xff3D1E4E),
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 30,
+                spreadRadius: 30,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _SeekBar extends StatelessWidget {
+  const _SeekBar({Key? key}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    double seekValue = 0;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          // seekbar
+          Slider(
+            value: seekValue,
+            onChanged: (value) {
+              // update seekbar
+            },
+            activeColor: Theme.of(context).primaryColor,
+            inactiveColor: Colors.grey.withOpacity(0.2),
+          ),
+
+          // time stamps
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // start time
+                Text(
+                  '0:00',
+                  style: Theme.of(context).textTheme.caption,
+                ),
+
+                // end time
+                Text(
+                  '3:00',
+                  style: Theme.of(context).textTheme.caption,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _MusicControllers extends StatelessWidget {
   const _MusicControllers({Key? key}) : super(key: key);
 
@@ -93,7 +152,6 @@ class _MusicControllers extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-
         // shuffle
         IconButton(
           onPressed: () {},
@@ -112,13 +170,14 @@ class _MusicControllers extends StatelessWidget {
           width: 60,
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
+            shape: BoxShape.circle,
+            boxShadow: const [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 3,
-                spreadRadius: 1,
-                offset: const Offset(0, 2),
+                color: Color(0xffE125B0),
+                blurRadius: 10,
+                spreadRadius: 10,
+                offset: Offset(0, 0),
+                blurStyle: BlurStyle.outer,
               ),
             ],
           ),
@@ -140,7 +199,7 @@ class _MusicControllers extends StatelessWidget {
           icon: const Icon(Icons.volume_up),
         ),
       ],
-            );
+    );
   }
 }
 
@@ -168,7 +227,7 @@ class _BottomBar extends StatelessWidget {
 
           // playlist icon
           IconButton(
-            icon: const Icon(Icons.playlist_play_rounded),
+            icon: const Icon(CupertinoIcons.list_bullet),
             onPressed: () {},
           ),
 
