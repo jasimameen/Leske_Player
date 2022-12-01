@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         // dark theme
         darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-          scaffoldBackgroundColor: const Color(0xff3D1E4E),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 39, 20, 50),
           primaryColor: const Color(0xffE125B0),
           iconTheme: const IconThemeData(color: Colors.white),
 
