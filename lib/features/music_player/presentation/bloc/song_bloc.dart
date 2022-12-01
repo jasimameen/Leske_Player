@@ -5,7 +5,7 @@ import 'package:music_player/core/utils/navigation.dart';
 
 import 'package:music_player/features/music_player/domain/entities/song.dart';
 import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
-import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
+import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
 
 part 'song_bloc.freezed.dart';
 part 'song_event.dart';
@@ -57,14 +57,7 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
     on<_ShowSongDetails>(
       (event, emit) async {
-        if (event.song != state.currentSong) {
-          Navigation.pushNamed(
-            NowPlayingPage.routeName,
-            arguments: event.song,
-          );
-        } else {
-          Navigation.pushNamed(NowPlayingPage.routeName);
-        }
+        Navigation.pushNamed(DetailsPage.routeName);
       },
     );
 

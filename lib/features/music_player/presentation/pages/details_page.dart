@@ -70,7 +70,7 @@ class _AlbumArt extends StatelessWidget {
         aspectRatio: 1 / 1,
         child: Container(
           decoration: BoxDecoration(
-            image: const DecorationImage(
+            image: DecorationImage(
               image: NetworkImage(dummyImage),
               fit: BoxFit.cover,
             ),
