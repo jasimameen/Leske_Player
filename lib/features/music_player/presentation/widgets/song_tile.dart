@@ -12,15 +12,15 @@ class SongTile extends StatelessWidget {
       child: ListTile(
         // cover Icon
         leading: Container(
-          height: 55,
-          width: 55,
+          height: 50,
+          width: 50,
           decoration: BoxDecoration(
             color: const Color.fromARGB(124, 117, 96, 123),
             borderRadius: BorderRadius.circular(25),
           ),
           child: const Icon(
             CupertinoIcons.music_note_2,
-            size: 22,
+            size: 21,
             color: Colors.white54,
           ),
         ),

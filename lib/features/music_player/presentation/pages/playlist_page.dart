@@ -29,8 +29,6 @@ class PlaylistPage extends StatelessWidget {
                         dummyImage,
                         errorBuilder: (context, err, _) =>
                             Container(color: Colors.black38),
-                        loadingBuilder: (context, err, _) =>
-                            const LinearProgressIndicator(),
                         fit: BoxFit.cover,
                       ),
                     ),
