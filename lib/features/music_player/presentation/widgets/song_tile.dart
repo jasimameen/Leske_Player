@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/core/utils/navigation.dart';
+import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
 import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
 
 class SongTile extends StatelessWidget {
@@ -10,6 +12,9 @@ class SongTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
+        onTap: () {
+          Navigation.pushNamed(DetailsPage.routeName);
+        },
         // cover Icon
         leading: Container(
           height: 50,
@@ -36,10 +41,10 @@ class SongTile extends StatelessWidget {
         ),
 
         // Subtitle of the song
-        subtitle: Text('A Synthwave Mix'),
+        subtitle: const Text('A Synthwave Mix'),
 
         // favorate Icons
-        trailing: Icon(
+        trailing: const Icon(
           CupertinoIcons.heart_fill,
           color: Color.fromARGB(139, 135, 122, 124),
           size: 30,

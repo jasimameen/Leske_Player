@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/core/utils/constants.dart';
+import 'package:music_player/core/utils/navigation.dart';
 
 import '../widgets/rounded_icon_button.dart';
 
@@ -16,14 +17,7 @@ class DetailsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             // back slider
-            Container(
-              height: 5,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            const _MimimizeSlider(),
 
             // album art
             const _AlbumArt(),
@@ -51,6 +45,29 @@ class DetailsPage extends StatelessWidget {
             // BotoomBar
             const _BottomBar(),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MimimizeSlider extends StatelessWidget {
+  const _MimimizeSlider({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onPanDown: (details) {
+        Navigation.pop();
+      },
+      child: Container(
+        height: 5,
+        width: 50,
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );
