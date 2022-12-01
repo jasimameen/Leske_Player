@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/core/utils/constants.dart';
 
-// random unsplash image url
-const albumArt = 'https://source.unsplash.com/random/900%C3%97700/?lofi';
+import '../widgets/rounded_icon_button.dart';
 
 class DetailsPage extends StatelessWidget {
   static const routeName = '/details';
@@ -71,7 +71,7 @@ class _AlbumArt extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: const DecorationImage(
-              image: NetworkImage(albumArt),
+              image: NetworkImage(dummyImage),
               fit: BoxFit.cover,
             ),
             shape: BoxShape.circle,
@@ -100,7 +100,7 @@ class _AlbumArt extends StatelessWidget {
 
 class _SeekBar extends StatelessWidget {
   const _SeekBar({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     double seekValue = 0;
@@ -165,27 +165,7 @@ class _MusicControllers extends StatelessWidget {
         ),
 
         // play/pause
-        Container(
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            shape: BoxShape.circle,
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0xffE125B0),
-                blurRadius: 10,
-                spreadRadius: 10,
-                offset: Offset(0, 0),
-                blurStyle: BlurStyle.outer,
-              ),
-            ],
-          ),
-          child: const Icon(
-            Icons.play_arrow,
-            color: Colors.white,
-          ),
-        ),
+        const RountedIconButton(icon: CupertinoIcons.play_arrow_solid),
 
         // next
         IconButton(

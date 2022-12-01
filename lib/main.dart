@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
 
 import 'core/utils/navigation.dart';
 import 'features/music_player/presentation/bloc/song_bloc.dart';
-import 'features/music_player/presentation/pages/details_page.dart';
 import 'injection_container.dart';
 import 'routes.dart';
 
@@ -33,18 +32,31 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         // dark theme
         darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
-          scaffoldBackgroundColor: const Color(0xff3D1E4E),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 39, 20, 50),
           primaryColor: const Color(0xffE125B0),
           iconTheme: const IconThemeData(color: Colors.white),
 
           // text theme
           textTheme: ThemeData.dark().textTheme.copyWith(
+                headline4: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                ),
+                headline6: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w700,
+                ),
+                subtitle1: const TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff877A7C),
+                ),
                 caption: const TextStyle(color: Color(0xff877A7C)),
               ),
         ),
 
         // all the route in this app
-        initialRoute: DetailsPage.routeName,
+        initialRoute: PlaylistPage.routeName,
         routes: routes,
       ),
     );
