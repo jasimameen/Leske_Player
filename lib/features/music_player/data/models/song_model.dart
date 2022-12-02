@@ -1,4 +1,5 @@
 import 'package:music_player/features/music_player/domain/entities/song.dart';
+import 'package:on_audio_query/on_audio_query.dart' as raw;
 
 class SongModel extends Song {
   const SongModel({
@@ -20,6 +21,17 @@ class SongModel extends Song {
       imageData: map['artwork'],
       isMusic: map["is_music"],
       duration: map["duration"] ?? 0,
+    );
+  }
+
+  factory SongModel.fromRaw(raw.SongModel raw) {
+    return SongModel(
+      id: raw.id,
+      title: raw.title,
+      artist: raw.artist ?? "unknown",
+      path: raw.data,
+      isMusic: raw.isMusic ?? false,
+      duration: raw.duration ?? 0,
     );
   }
 }
