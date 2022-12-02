@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_player/features/music_player/presentation/pages/home_page.dart';
-import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
 
 import 'core/utils/navigation.dart';
 import 'features/music_player/presentation/bloc/song_bloc.dart';

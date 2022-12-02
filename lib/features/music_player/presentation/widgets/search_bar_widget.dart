@@ -13,6 +13,13 @@ class SearchBarWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 157, 78, 105).withOpacity(.5),
         borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.2),
+            blurRadius: 8,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
       clipBehavior: Clip.hardEdge,
       child: const CupertinoSearchTextField(

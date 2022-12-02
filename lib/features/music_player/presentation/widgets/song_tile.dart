@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:music_player/core/utils/navigation.dart';
 import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
-import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
 
 class SongTile extends StatelessWidget {
   const SongTile({super.key});

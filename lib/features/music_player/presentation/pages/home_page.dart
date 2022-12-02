@@ -11,10 +11,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -26,7 +25,7 @@ class HomePage extends StatelessWidget {
                   // Title
                   Text(
                     "Library",
-                    style: Theme.of(context).textTheme.headline5,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
 
                   const SizedBox(height: 20),
@@ -40,32 +39,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             // playlist list horizontal
-            Flexible(
+           const Flexible(
               flex: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // title
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      "Playlists",
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // list
-                  Flexible(
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      itemBuilder: (context, index) => const HomePlayListTile(),
-                    ),
-                  ),
-                ],
-              ),
+              child: _PlaylistSection(),
             ),
 
             const SizedBox(height: 20),
@@ -96,6 +72,40 @@ class HomePage extends StatelessWidget {
       // now playing song mini widget
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: const MiniPlayer(),
+    );
+  }
+}
+
+class _PlaylistSection extends StatelessWidget {
+  const _PlaylistSection({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // title
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Text(
+            "Playlists",
+            style: Theme.of(context).textTheme.headline5,
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        // list
+        Flexible(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder: (context, index) => const HomePlayListTile(),
+          ),
+        ),
+      ],
     );
   }
 }

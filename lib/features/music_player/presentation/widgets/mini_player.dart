@@ -13,11 +13,18 @@ class MiniPlayer extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          height: 100,
+          height: 75,
           width: screenWidth * .80,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 62, 38, 77),
+            color: const Color.fromARGB(255, 62, 38, 77),
             borderRadius: BorderRadius.circular(50),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(.2),
+                blurRadius: 10,
+                offset: const Offset(0, 5),
+              ),
+            ],
           ),
         ),
         Padding(
@@ -35,7 +42,7 @@ class MiniPlayer extends StatelessWidget {
                 "My Delorem",
                 style: Theme.of(context)
                     .textTheme
-                    .headline5!
+                    .bodyText1!
                     .copyWith(color: Colors.white),
               ),
               const Spacer(),
@@ -64,10 +71,10 @@ class _ProgresLogo extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       children: [
         SizedBox(
-          height: 115,
-          width: 115,
+          height: 80,
+          width: 80,
           child: CircularProgressIndicator(
-            strokeWidth: 6,
+            strokeWidth: 4,
             color: Theme.of(context).primaryColor,
           ),
         ),
@@ -77,7 +84,7 @@ class _ProgresLogo extends StatelessWidget {
             shape: BoxShape.circle,
           ),
           child: CircleAvatar(
-            radius: 50,
+            radius: 35,
             backgroundImage: NetworkImage(dummyImage),
           ),
         ),

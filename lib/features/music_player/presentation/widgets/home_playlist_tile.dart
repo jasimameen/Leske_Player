@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:music_player/core/utils/navigation.dart';
-import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
 import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
 
 import '../../../../core/utils/constants.dart';

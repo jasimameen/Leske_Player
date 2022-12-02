@@ -65,9 +65,10 @@ class _MimimizeSlider extends StatelessWidget {
       child: Container(
         height: 5,
         width: 50,
+        margin: const EdgeInsets.only(top: 50),
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(10), 
         ),
       ),
     );
