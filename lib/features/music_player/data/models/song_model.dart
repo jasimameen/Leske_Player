@@ -2,7 +2,7 @@ import 'package:music_player/features/music_player/domain/entities/song.dart';
 import 'package:on_audio_query/on_audio_query.dart' as raw;
 
 class SongModel extends Song {
-  const SongModel({
+   SongModel({
     required super.id,
     required super.title,
     required super.artist,

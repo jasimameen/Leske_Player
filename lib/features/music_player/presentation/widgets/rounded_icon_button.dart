@@ -8,6 +8,8 @@ class RountedIconButton extends StatelessWidget {
   final Color shadowColor;
   final EdgeInsetsGeometry? padding;
 
+  final void Function()? onTap;
+
   const RountedIconButton({
     Key? key,
     required this.icon,
@@ -15,31 +17,35 @@ class RountedIconButton extends StatelessWidget {
     this.color,
     this.shadowColor = const Color(0xffE125B0),
     this.padding,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size,
-      width: size,
-      decoration: BoxDecoration(
-        color: color ?? Theme.of(context).primaryColor,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            blurRadius: 10,
-            spreadRadius: 10,
-            offset: const Offset(0, 0),
-            blurStyle: BlurStyle.outer,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: size,
+        width: size,
+        decoration: BoxDecoration(
+          color: color ?? Theme.of(context).primaryColor,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: shadowColor,
+              blurRadius: 10,
+              spreadRadius: 10,
+              offset: const Offset(0, 0),
+              blurStyle: BlurStyle.outer,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: padding ?? EdgeInsets.zero,
+          child: Icon(
+            icon,
+            color: Colors.white,
           ),
-        ],
-      ),
-      child: Padding(
-        padding: padding ?? EdgeInsets.zero,
-        child: Icon(
-          icon,
-          color: Colors.white,
         ),
       ),
     );

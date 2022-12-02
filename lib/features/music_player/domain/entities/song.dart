@@ -8,18 +8,18 @@ class Song extends Equatable {
   final String artist;
   final String path;
 
-  final Uint8List? imageData;
+  late Uint8List? imageData;
 
   final bool isMusic;
 
   final int duration;
 
-  const Song({
+   Song({
     required this.id,
     required this.title,
     required this.artist,
     required this.path,
-    this.imageData,
+     this.imageData,
     required this.isMusic,
     required this.duration,
   });

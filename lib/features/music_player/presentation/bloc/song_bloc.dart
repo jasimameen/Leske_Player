@@ -21,6 +21,7 @@ class SongBloc extends Bloc<SongEvent, SongState> {
     this.audioPlayer,
   ) : super(SongState.initial()) {
     // updates the postion, buffer and duration in the state
+
     SongState updatePositionStream() {
       // combine
       final stream = Rx.combineLatest3(
@@ -29,7 +30,7 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         audioPlayer.durationStream,
         (position, buffer, duration) =>
             PositionStreamData(position, buffer, duration),
-      );
+      ).asBroadcastStream();
       return state.copyWith(positionStream: stream);
     }
 
@@ -62,7 +63,16 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
     on<_ShowSongDetails>(
       (event, emit) async {
-        add(SongEvent.playOrPauseSong(event.song));
+        audioPlayer.setUrl(event.song.path);
+        audioPlayer.play();
+
+        state.positionStream.listen(null);
+        updatePositionStream();
+        final bool plySta = audioPlayer.playing;
+        emit(state.copyWith(
+          isPlaying: plySta,
+          currentSong: event.song,
+        ));
         Navigation.pushNamed(DetailsPage.routeName);
       },
     );

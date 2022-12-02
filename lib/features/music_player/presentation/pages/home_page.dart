@@ -87,7 +87,15 @@ class HomePage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final data = state.songList[index];
 
-                      return SongTile(title: data.title, subtitle: data.artist);
+                      return SongTile(
+                        title: data.title,
+                        subtitle: data.artist,
+                        onTap: () {
+                          context
+                              .read<SongBloc>()
+                              .add(SongEvent.showSongDetails(data));
+                        },
+                      );
                     },
                   );
                 },
@@ -99,13 +107,13 @@ class HomePage extends StatelessWidget {
 
       // now playing song mini widget
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton:
-          BlocBuilder<SongBloc, SongState>(builder: (context, state) {
-        final song = state.currentSong;
-        if (song == null) return const SizedBox();
+      floatingActionButton: BlocBuilder<SongBloc, SongState>(
+        builder: (context, state) {
+          final song = state.currentSong;
 
-        return MiniPlayer(title: song.title);
-      }),
+          return song != null ? const MiniPlayer() : const SizedBox();
+        },
+      ),
     );
   }
 }

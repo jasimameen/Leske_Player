@@ -37,27 +37,6 @@ class SeekBar extends StatelessWidget {
                   progressBarColor: Theme.of(context).primaryColor,
                   thumbColor: Theme.of(context).primaryColor,
                 ),
-
-                // time stamps
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // start time
-                      Text(
-                        position.inSeconds.toString(),
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-
-                      // end time
-                      Text(
-                        position.inMinutes.toString(),
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ],
-                  ),
-                ),
               ],
             );
           }),

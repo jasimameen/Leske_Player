@@ -15,8 +15,6 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final song = context.read<SongBloc>().state.currentSong!;
-
     return Scaffold(
       body: Center(
         child: Column(
@@ -29,22 +27,32 @@ class DetailsPage extends StatelessWidget {
             const _AlbumArt(),
 
             // MetaData
-            Column(
-              children: [
-                Text(
-                  song.title,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Text(
-                  song.artist,
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-              ],
+            BlocBuilder<SongBloc, SongState>(
+              builder: (context, state) {
+                final song = state.currentSong!;
+                return Column(
+                  children: [
+                    Text(
+                      song.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      song.artist,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ],
+                );
+              },
             ),
 
             // SeekBar
-            SeekBar(
-              positionStream: context.read<SongBloc>().state.positionStream,
+            BlocBuilder<SongBloc, SongState>(
+              builder: (context, state) {
+                final positionStream = state.positionStream;
+                return SeekBar(
+                  positionStream: positionStream,
+                );
+              },
             ),
 
             // Controllers
@@ -90,33 +98,44 @@ class _AlbumArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(50),
-      child: AspectRatio(
-        aspectRatio: 1 / 1,
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: NetworkImage(dummyImage),
-              fit: BoxFit.cover,
-            ),
-            shape: BoxShape.circle,
-            // add gradient to image
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xffE125B0),
-                Color(0xff3D1E4E),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final song = context.read<SongBloc>().state.currentSong!;
+    return LimitedBox(
+      maxWidth: screenWidth * .8,
+      maxHeight: screenWidth * .8,
+      child: Padding(
+        padding: const EdgeInsets.all(50),
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: Container(
+            decoration: BoxDecoration(
+              image: song.imageData == null
+                  ? DecorationImage(
+                      image: NetworkImage(dummyImage),
+                      fit: BoxFit.cover,
+                    )
+                  : DecorationImage(
+                      image: MemoryImage(song.imageData!),
+                      fit: BoxFit.cover,
+                    ),
+              shape: BoxShape.circle,
+              // add gradient to image
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xffE125B0),
+                  Color(0xff3D1E4E),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 30,
+                  spreadRadius: 30,
+                ),
               ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 30,
-                spreadRadius: 30,
-              ),
-            ],
           ),
         ),
       ),
@@ -129,6 +148,8 @@ class _MusicControllers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final song = context.read<SongBloc>().state.currentSong!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -140,22 +161,43 @@ class _MusicControllers extends StatelessWidget {
 
         // previous
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<SongBloc>().add(const SongEvent.playPreviousSong());
+          },
           icon: const Icon(Icons.skip_previous),
         ),
 
         // play/pause
-        const RountedIconButton(icon: CupertinoIcons.play_arrow_solid),
+        BlocBuilder<SongBloc, SongState>(
+          // only rebuilds when player state changes
+          buildWhen: (previous, current) =>
+              previous.isPlaying != current.isPlaying,
+
+          builder: (context, state) {
+            return RountedIconButton(
+              icon: state.isPlaying
+                  ? CupertinoIcons.pause_solid
+                  : CupertinoIcons.play_arrow_solid,
+              onTap: () {
+                context.read<SongBloc>().add(SongEvent.playOrPauseSong(song));
+              },
+            );
+          },
+        ),
 
         // next
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<SongBloc>().add(const SongEvent.playNextSong());
+          },
           icon: const Icon(Icons.skip_next),
         ),
 
         // volume
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // do it later
+          },
           icon: const Icon(Icons.volume_up),
         ),
       ],
