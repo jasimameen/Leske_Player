@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:music_player/core/utils/navigation.dart';
 import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
 
 class SongTile extends StatelessWidget {
-  const SongTile({super.key});
+  const SongTile({
+    Key? key,
+    required this.title,
+    required this.subtitle,
+  }) : super(key: key);
+
+  final String title;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +38,9 @@ class SongTile extends StatelessWidget {
         ),
 
         // Song Name
-        title: const Text(
-          'Low Earth Orbit',
-          style: TextStyle(
+        title: Text(
+          title,
+          style: const TextStyle(
             fontFamily: 'Roboto',
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -40,7 +48,7 @@ class SongTile extends StatelessWidget {
         ),
 
         // Subtitle of the song
-        subtitle: const Text('A Synthwave Mix'),
+        subtitle: Text(subtitle),
 
         // favorate Icons
         trailing: const Icon(

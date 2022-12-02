@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_player/core/utils/constants.dart';
 import 'package:music_player/core/utils/navigation.dart';
+import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
 
+import '../bloc/song_bloc.dart';
 import '../widgets/rounded_icon_button.dart';
+import '../widgets/seek_bar.dart';
 
 class DetailsPage extends StatelessWidget {
   static const routeName = '/details';
@@ -11,6 +15,8 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final song = context.read<SongBloc>().state.currentSong!;
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -26,18 +32,20 @@ class DetailsPage extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'My Delorean',
+                  song.title,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 Text(
-                  'A Synthwave Mixtape',
+                  song.artist,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
               ],
             ),
 
             // SeekBar
-            const _SeekBar(),
+            SeekBar(
+              positionStream: context.read<SongBloc>().state.positionStream,
+            ),
 
             // Controllers
             const _MusicControllers(),
@@ -68,7 +76,7 @@ class _MimimizeSlider extends StatelessWidget {
         margin: const EdgeInsets.only(top: 50),
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(10), 
+          borderRadius: BorderRadius.circular(10),
         ),
       ),
     );
@@ -111,52 +119,6 @@ class _AlbumArt extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _SeekBar extends StatelessWidget {
-  const _SeekBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double seekValue = 0;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          // seekbar
-          Slider(
-            value: seekValue,
-            onChanged: (value) {
-              // update seekbar
-            },
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Colors.grey.withOpacity(0.2),
-          ),
-
-          // time stamps
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // start time
-                Text(
-                  '0:00',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-
-                // end time
-                Text(
-                  '3:00',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -226,7 +188,10 @@ class _BottomBar extends StatelessWidget {
           // playlist icon
           IconButton(
             icon: const Icon(CupertinoIcons.list_bullet),
-            onPressed: () {},
+            onPressed: () {
+              // show playlist
+              Navigation.pushNamed(PlaylistPage.routeName);
+            },
           ),
 
           // favorate icon

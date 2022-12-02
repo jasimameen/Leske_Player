@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:music_player/core/utils/constants.dart';
 import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
 
 class MiniPlayer extends StatelessWidget {
-  const MiniPlayer({Key? key}) : super(key: key);
+  const MiniPlayer({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class MiniPlayer extends StatelessWidget {
 
               //  song name
               Text(
-                "My Delorem",
+                title,
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1!

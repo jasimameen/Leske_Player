@@ -10,54 +10,57 @@ class SeekBar extends StatelessWidget {
   const SeekBar({
     Key? key,
     required this.positionStream,
-    required this.durationStream,
-    required this.bufferPositionStream,
   }) : super(key: key);
 
-  final Stream<Duration> positionStream;
-  final Stream<Duration> bufferPositionStream;
-  final Stream<Duration?> durationStream;
-
-  Stream<PositionData> get _positionDataStream =>
-      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
-          positionStream,
-          bufferPositionStream,
-          durationStream,
-          (position, bufferedPosition, duration) => PositionData(
-              position, bufferedPosition, duration ?? Duration.zero));
-
+  final Stream<PositionStreamData> positionStream;
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<PositionData>(
-      stream: _positionDataStream,
-      builder: (context, snapshot) {
-        // final durationState = snapshot.data;
-        final position = snapshot.data?.position ?? Duration.zero;
-        final buffer = snapshot.data?.bufferedPosition ?? Duration.zero;
-        final duration = snapshot.data?.duration ?? Duration.zero;
-        return ProgressBar(
-          // progress: durationState ?? Duration.zero,
-          // buffered: bufferPositionStream,
-          progress: position,
-          buffered: buffer,
-          total: duration,
-          onSeek: (duration) {
-            context.read<SongBloc>().add(SongEvent.seekTo(duration));
-          },
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: StreamBuilder<PositionStreamData>(
+          stream: positionStream,
+          builder: (context, snapshot) {
+            final position = snapshot.data?.position ?? Duration.zero;
+            final buffer = snapshot.data?.bufferedPosition ?? Duration.zero;
+            final duration = snapshot.data?.duration ?? Duration.zero;
+            return Column(
+              children: [
+                // seekbar
+                ProgressBar(
+                  progress: position,
+                  buffered: buffer,
+                  total: duration,
+                  onSeek: (duration) {
+                    context.read<SongBloc>().add(SongEvent.seekTo(duration));
+                  },
+                  baseBarColor: Colors.grey.withOpacity(0.2),
+                  progressBarColor: Theme.of(context).primaryColor,
+                  thumbColor: Theme.of(context).primaryColor,
+                ),
+
+                // time stamps
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // start time
+                      Text(
+                        position.inSeconds.toString(),
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+
+                      // end time
+                      Text(
+                        position.inMinutes.toString(),
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            );
+          }),
     );
   }
-}
-
-class PositionData {
-  Duration position;
-  Duration bufferedPosition;
-  Duration duration;
-
-  PositionData(
-    this.position,
-    this.bufferedPosition,
-    this.duration,
-  );
 }

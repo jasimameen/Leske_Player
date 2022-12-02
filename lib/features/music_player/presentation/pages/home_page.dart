@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_player/features/music_player/domain/entities/song.dart';
+import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
 import 'package:music_player/features/music_player/presentation/widgets/home_playlist_tile.dart';
 import 'package:music_player/features/music_player/presentation/widgets/search_bar_widget.dart';
 import 'package:music_player/features/music_player/presentation/widgets/song_tile.dart';
@@ -11,6 +14,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SongBloc>().add(const SongEvent.getLocalSongs());
+    });
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -39,7 +46,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             // playlist list horizontal
-           const Flexible(
+            const Flexible(
               flex: 1,
               child: _PlaylistSection(),
             ),
@@ -60,9 +67,30 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 10),
             // favorate items
             Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) => const SongTile(),
+              child: BlocBuilder<SongBloc, SongState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.pink,
+                      ),
+                    );
+                  }
+
+                  if (state.isError) {
+                    return const Center(child: Text("Something went Wrong"));
+                  }
+
+                  return ListView.builder(
+                    itemCount: state.songList.length,
+                    itemBuilder: (context, index) {
+                      final data = state.songList[index];
+
+                      return SongTile(title: data.title, subtitle: data.artist);
+                    },
+                  );
+                },
               ),
             ),
           ],
@@ -71,7 +99,13 @@ class HomePage extends StatelessWidget {
 
       // now playing song mini widget
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: const MiniPlayer(),
+      floatingActionButton:
+          BlocBuilder<SongBloc, SongState>(builder: (context, state) {
+        final song = state.currentSong;
+        if (song == null) return const SizedBox();
+
+        return MiniPlayer(title: song.title);
+      }),
     );
   }
 }

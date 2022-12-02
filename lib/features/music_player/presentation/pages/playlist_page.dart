@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_player/core/utils/constants.dart';
 import 'package:music_player/core/utils/navigation.dart';
+import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
 import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
 import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
 import 'package:music_player/features/music_player/presentation/widgets/song_tile.dart';
@@ -55,15 +57,29 @@ class PlaylistPage extends StatelessWidget {
             // -- List of songs in the playlist --
             Expanded(
               flex: 3,
-              child: ListView.separated(
-                itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      Navigation.pushNamed(DetailsPage.routeName);
-                    },
-                    child: const SongTile()),
-                separatorBuilder: (context, index) => const SizedBox(height: 5),
-                itemCount: 6,
-              ),
+              child:
+                  BlocBuilder<SongBloc, SongState>(builder: (context, state) {
+                return ListView.separated(
+                  itemBuilder: (context, index) {
+                    final data = state.songList[index];
+                    return GestureDetector(
+                      onTap: () {
+                        // go to song page
+                        context
+                            .read<SongBloc>()
+                            .add(SongEvent.showSongDetails(data),);
+                      },
+                      child: SongTile(
+                        title: data.title,
+                        subtitle: data.artist,
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 5),
+                  itemCount: state.songList.length,
+                );
+              }),
             ),
           ],
         ),
@@ -138,14 +154,14 @@ class _TitleAndSongCount extends StatelessWidget {
       children: [
         // Title
         Text(
-          'Playlist Name',
+          'Jazz',
           style: Theme.of(context).textTheme.headline4,
         ),
         const SizedBox(height: 8),
 
         // Subtitle song count and hours
         Text(
-          '100 songs  10 hours',
+          '100 songs  18 hours',
           style: Theme.of(context).textTheme.subtitle1,
         ),
       ],
