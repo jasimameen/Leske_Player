@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'song_bloc.dart';
 
 @freezed
@@ -8,9 +9,7 @@ class SongState with _$SongState {
     required bool isPlaying,
     required bool isError,
     required bool isLoading,
-    required Stream<Duration?> durationStream,
-    required Stream<Duration> positionStream,
-    required Stream<Duration> buffferPositionStream,
+    required Stream<PositionStreamData> positionStream,
   }) = _SongState;
 
   factory SongState.initial() => SongState(
@@ -19,8 +18,23 @@ class SongState with _$SongState {
         isPlaying: false,
         isError: false,
         isLoading: false,
-        durationStream: Stream.value(Duration.zero),
-        positionStream: Stream.value(Duration.zero),
-        buffferPositionStream: Stream.value(Duration.zero),
+        positionStream: const Stream.empty(),
       );
+}
+
+// stream model
+/// contains current position of the stream
+/// ```dart
+/// DurationModel(Duration position, Duration bufferedPosition, Duration duration)
+/// ```
+class PositionStreamData {
+  Duration position;
+  Duration bufferedPosition;
+  Duration? duration;
+
+  PositionStreamData(
+    this.position,
+    this.bufferedPosition,
+    this.duration,
+  );
 }

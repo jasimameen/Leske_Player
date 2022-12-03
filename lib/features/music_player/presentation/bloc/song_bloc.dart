@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_player/core/utils/navigation.dart';
+import '../../../../core/utils/navigation.dart';
 
-import 'package:music_player/features/music_player/domain/entities/song.dart';
-import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
-import 'package:music_player/features/music_player/presentation/pages/now_playing_page.dart';
+import '../../domain/entities/song.dart';
+import '../../domain/repositories/song_repository.dart';
+import '../pages/details_page.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'song_bloc.freezed.dart';
 part 'song_event.dart';
@@ -20,12 +21,17 @@ class SongBloc extends Bloc<SongEvent, SongState> {
     this.audioPlayer,
   ) : super(SongState.initial()) {
     // updates the postion, buffer and duration in the state
+
     SongState updatePositionStream() {
-      return state.copyWith(
-        positionStream: audioPlayer.positionStream,
-        durationStream: audioPlayer.durationStream,
-        buffferPositionStream: audioPlayer.bufferedPositionStream,
-      );
+      // combine
+      final stream = Rx.combineLatest3(
+        audioPlayer.positionStream,
+        audioPlayer.bufferedPositionStream,
+        audioPlayer.durationStream,
+        (position, buffer, duration) =>
+            PositionStreamData(position, buffer, duration),
+      ).asBroadcastStream();
+      return state.copyWith(positionStream: stream);
     }
 
     on<_GetLocalSongs>(
@@ -57,14 +63,17 @@ class SongBloc extends Bloc<SongEvent, SongState> {
 
     on<_ShowSongDetails>(
       (event, emit) async {
-        if (event.song != state.currentSong) {
-          Navigation.pushNamed(
-            NowPlayingPage.routeName,
-            arguments: event.song,
-          );
-        } else {
-          Navigation.pushNamed(NowPlayingPage.routeName);
-        }
+        audioPlayer.setUrl(event.song.path);
+        audioPlayer.play();
+
+        state.positionStream.listen(null);
+        updatePositionStream();
+        final bool plySta = audioPlayer.playing;
+        emit(state.copyWith(
+          isPlaying: plySta,
+          currentSong: event.song,
+        ));
+        Navigation.pushNamed(DetailsPage.routeName);
       },
     );
 

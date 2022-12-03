@@ -20,7 +20,7 @@ void main() {
   });
 
   // testObjects
-  const tSongs = [
+  final tSongs = [
     Song(
       id: 1,
       title: "test title",
@@ -37,13 +37,13 @@ void main() {
       () async {
         // arrange
         when(mockSongRepository.getSongsFromLocalStorage())
-            .thenAnswer((realInvocation) async => const Right(tSongs));
+            .thenAnswer((realInvocation) async =>  Right(tSongs));
 
         // act
         final result = await usecase(NoParams());
 
         // assert
-        expect(result, const Right(tSongs));
+        expect(result,  Right(tSongs));
         verify(mockSongRepository.getSongsFromLocalStorage());
         verifyNoMoreInteractions(mockSongRepository);
       },

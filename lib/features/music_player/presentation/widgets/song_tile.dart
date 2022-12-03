@@ -1,15 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
 
 class SongTile extends StatelessWidget {
-  const SongTile({super.key});
+  const SongTile({
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    this.onTap,
+  }) : super(key: key);
+
+  final String title;
+  final String subtitle;
+
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
+        onTap: onTap,
         // cover Icon
         leading: Container(
           height: 50,
@@ -26,9 +36,9 @@ class SongTile extends StatelessWidget {
         ),
 
         // Song Name
-        title: const Text(
-          'Low Earth Orbit',
-          style: TextStyle(
+        title: Text(
+          title,
+          style: const TextStyle(
             fontFamily: 'Roboto',
             color: Colors.white,
             fontWeight: FontWeight.w600,
@@ -36,10 +46,10 @@ class SongTile extends StatelessWidget {
         ),
 
         // Subtitle of the song
-        subtitle: Text('A Synthwave Mix'),
+        subtitle: Text(subtitle),
 
         // favorate Icons
-        trailing: Icon(
+        trailing: const Icon(
           CupertinoIcons.heart_fill,
           color: Color.fromARGB(139, 135, 122, 124),
           size: 30,

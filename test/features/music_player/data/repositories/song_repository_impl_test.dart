@@ -26,7 +26,7 @@ void main() {
         SongRepositoryImpl(mockSongLocalDataSource, mockStoragePermission);
   });
 
-  const tSongModels = [
+  final tSongModels = [
     SongModel(
       id: 1,
       title: "test title",
@@ -36,7 +36,7 @@ void main() {
       duration: 1,
     ),
   ];
-  const List<Song> tSongs = tSongModels;
+  final List<Song> tSongs = tSongModels;
 
   test(
     "should check storage permission status",
@@ -65,7 +65,7 @@ void main() {
           final result = await repository.getSongsFromLocalStorage();
           // assert
           verify(mockSongLocalDataSource.getAllSongsFromLocalStorage());
-          expect(result, equals(const Right(tSongs)));
+          expect(result, equals(Right(tSongs)));
         },
       );
 
@@ -155,7 +155,7 @@ void main() {
           final result = await repository.getSongsFromLocalStorage();
 
           // assert
-          expect(result, equals(const Right(tSongs)));
+          expect(result, equals( Right(tSongs)));
           verify(mockSongLocalDataSource.getAllSongsFromLocalStorage());
         },
       );

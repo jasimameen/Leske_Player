@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
+import 'features/music_player/presentation/pages/home_page.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'core/utils/navigation.dart';
 import 'features/music_player/presentation/bloc/song_bloc.dart';
@@ -9,8 +10,8 @@ import 'routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await init();
-  // await Permission.storage.request();
+  await init();
+  await Permission.storage.request();
   runApp(const MyApp());
 }
 
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
         ),
 
         // all the route in this app
-        initialRoute: PlaylistPage.routeName,
+        initialRoute: HomePage.routeName,
         routes: routes,
       ),
     );

@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:music_player/core/utils/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/navigation.dart';
+import 'playlist_page.dart';
 
+import '../bloc/song_bloc.dart';
 import '../widgets/rounded_icon_button.dart';
+import '../widgets/seek_bar.dart';
 
 class DetailsPage extends StatelessWidget {
   static const routeName = '/details';
@@ -16,34 +21,39 @@ class DetailsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             // back slider
-            Container(
-              height: 5,
-              width: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            const _MimimizeSlider(),
 
             // album art
             const _AlbumArt(),
 
             // MetaData
-            Column(
-              children: [
-                Text(
-                  'My Delorean',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Text(
-                  'A Synthwave Mixtape',
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-              ],
+            BlocBuilder<SongBloc, SongState>(
+              builder: (context, state) {
+                final song = state.currentSong!;
+                return Column(
+                  children: [
+                    Text(
+                      song.title,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    Text(
+                      song.artist,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ],
+                );
+              },
             ),
 
             // SeekBar
-            const _SeekBar(),
+            BlocBuilder<SongBloc, SongState>(
+              builder: (context, state) {
+                final positionStream = state.positionStream;
+                return SeekBar(
+                  positionStream: positionStream,
+                );
+              },
+            ),
 
             // Controllers
             const _MusicControllers(),
@@ -57,6 +67,30 @@ class DetailsPage extends StatelessWidget {
   }
 }
 
+class _MimimizeSlider extends StatelessWidget {
+  const _MimimizeSlider({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onPanDown: (details) {
+        Navigation.pop();
+      },
+      child: Container(
+        height: 5,
+        width: 50,
+        margin: const EdgeInsets.only(top: 50),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+  }
+}
+
 class _AlbumArt extends StatelessWidget {
   const _AlbumArt({
     Key? key,
@@ -64,81 +98,46 @@ class _AlbumArt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(50),
-      child: AspectRatio(
-        aspectRatio: 1 / 1,
-        child: Container(
-          decoration: BoxDecoration(
-            image: const DecorationImage(
-              image: NetworkImage(dummyImage),
-              fit: BoxFit.cover,
-            ),
-            shape: BoxShape.circle,
-            // add gradient to image
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xffE125B0),
-                Color(0xff3D1E4E),
+    final screenWidth = MediaQuery.of(context).size.width;
+    final song = context.read<SongBloc>().state.currentSong!;
+    return LimitedBox(
+      maxWidth: screenWidth * .8,
+      maxHeight: screenWidth * .8,
+      child: Padding(
+        padding: const EdgeInsets.all(50),
+        child: AspectRatio(
+          aspectRatio: 1 / 1,
+          child: Container(
+            decoration: BoxDecoration(
+              image: song.imageData == null
+                  ? DecorationImage(
+                      image: NetworkImage(dummyImage),
+                      fit: BoxFit.cover,
+                    )
+                  : DecorationImage(
+                      image: MemoryImage(song.imageData!),
+                      fit: BoxFit.cover,
+                    ),
+              shape: BoxShape.circle,
+              // add gradient to image
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xffE125B0),
+                  Color(0xff3D1E4E),
+                ],
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 30,
+                  spreadRadius: 30,
+                ),
               ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                blurRadius: 30,
-                spreadRadius: 30,
-              ),
-            ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _SeekBar extends StatelessWidget {
-  const _SeekBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    double seekValue = 0;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          // seekbar
-          Slider(
-            value: seekValue,
-            onChanged: (value) {
-              // update seekbar
-            },
-            activeColor: Theme.of(context).primaryColor,
-            inactiveColor: Colors.grey.withOpacity(0.2),
-          ),
-
-          // time stamps
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // start time
-                Text(
-                  '0:00',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-
-                // end time
-                Text(
-                  '3:00',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
@@ -149,6 +148,8 @@ class _MusicControllers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final song = context.read<SongBloc>().state.currentSong!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -160,22 +161,43 @@ class _MusicControllers extends StatelessWidget {
 
         // previous
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<SongBloc>().add(const SongEvent.playPreviousSong());
+          },
           icon: const Icon(Icons.skip_previous),
         ),
 
         // play/pause
-        const RountedIconButton(icon: CupertinoIcons.play_arrow_solid),
+        BlocBuilder<SongBloc, SongState>(
+          // only rebuilds when player state changes
+          buildWhen: (previous, current) =>
+              previous.isPlaying != current.isPlaying,
+
+          builder: (context, state) {
+            return RountedIconButton(
+              icon: state.isPlaying
+                  ? CupertinoIcons.pause_solid
+                  : CupertinoIcons.play_arrow_solid,
+              onTap: () {
+                context.read<SongBloc>().add(SongEvent.playOrPauseSong(song));
+              },
+            );
+          },
+        ),
 
         // next
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<SongBloc>().add(const SongEvent.playNextSong());
+          },
           icon: const Icon(Icons.skip_next),
         ),
 
         // volume
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // do it later
+          },
           icon: const Icon(Icons.volume_up),
         ),
       ],
@@ -208,7 +230,10 @@ class _BottomBar extends StatelessWidget {
           // playlist icon
           IconButton(
             icon: const Icon(CupertinoIcons.list_bullet),
-            onPressed: () {},
+            onPressed: () {
+              // show playlist
+              Navigation.pushNamed(PlaylistPage.routeName);
+            },
           ),
 
           // favorate icon
