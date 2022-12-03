@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-List randomList = ['lofi'];
+List randomList = ['lofi', 'portrait', 'rap', 'trend', 'lifestyle-fashion', 'fashion'];
 
 String get dummyImage =>
     // ignore: prefer_interpolation_to_compose_strings
