@@ -1,10 +1,10 @@
-import 'package:music_player/core/error/exceptions.dart';
-import 'package:music_player/core/utils/permission_handler.dart';
-import 'package:music_player/features/music_player/data/datasources/song_local_datasource.dart';
-import 'package:music_player/features/music_player/domain/entities/song.dart';
-import 'package:music_player/core/error/failure.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/utils/permission_handler.dart';
+import '../datasources/song_local_datasource.dart';
+import '../../domain/entities/song.dart';
+import '../../../../core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
+import '../../domain/repositories/song_repository.dart';
 
 class SongRepositoryImpl implements SongRepository {
   final SongLocalDataSource localDataSource;

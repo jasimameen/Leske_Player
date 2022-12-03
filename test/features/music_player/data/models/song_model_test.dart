@@ -7,7 +7,7 @@ import 'package:music_player/features/music_player/domain/entities/song.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {
-  const tSongModel = SongModel(
+  final tSongModel = SongModel(
     id: 1,
     title: "test title",
     artist: "test artist",
