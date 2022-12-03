@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_player/core/utils/navigation.dart';
+import '../../../../core/utils/navigation.dart';
 
-import 'package:music_player/features/music_player/domain/entities/song.dart';
-import 'package:music_player/features/music_player/domain/repositories/song_repository.dart';
-import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
+import '../../domain/entities/song.dart';
+import '../../domain/repositories/song_repository.dart';
+import '../pages/details_page.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'song_bloc.freezed.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/core/utils/constants.dart';
-import 'package:music_player/core/utils/navigation.dart';
-import 'package:music_player/features/music_player/presentation/pages/playlist_page.dart';
+import '../../../../core/utils/constants.dart';
+import '../../../../core/utils/navigation.dart';
+import 'playlist_page.dart';
 
 import '../bloc/song_bloc.dart';
 import '../widgets/rounded_icon_button.dart';

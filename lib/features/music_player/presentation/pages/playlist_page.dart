@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/core/utils/constants.dart';
-import 'package:music_player/core/utils/navigation.dart';
-import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
-import 'package:music_player/features/music_player/presentation/pages/details_page.dart';
-import 'package:music_player/features/music_player/presentation/widgets/rounded_icon_button.dart';
-import 'package:music_player/features/music_player/presentation/widgets/song_tile.dart';
+import '../../../../core/utils/constants.dart';
+import '../bloc/song_bloc.dart';
+import '../widgets/rounded_icon_button.dart';
+import '../widgets/song_tile.dart';
 
 class PlaylistPage extends StatelessWidget {
   static const routeName = '/playlist';

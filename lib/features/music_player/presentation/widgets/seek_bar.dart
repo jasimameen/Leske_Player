@@ -2,7 +2,6 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
 

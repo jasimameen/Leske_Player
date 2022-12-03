@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_player/features/music_player/domain/entities/song.dart';
-import 'package:music_player/features/music_player/presentation/bloc/song_bloc.dart';
-import 'package:music_player/features/music_player/presentation/widgets/home_playlist_tile.dart';
-import 'package:music_player/features/music_player/presentation/widgets/search_bar_widget.dart';
-import 'package:music_player/features/music_player/presentation/widgets/song_tile.dart';
+import '../bloc/song_bloc.dart';
+import '../widgets/home_playlist_tile.dart';
+import '../widgets/search_bar_widget.dart';
+import '../widgets/song_tile.dart';
 
 import '../widgets/mini_player.dart';
 

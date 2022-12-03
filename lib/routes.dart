@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/features/music_player/presentation/pages/home_page.dart';
+import 'features/music_player/presentation/pages/home_page.dart';
 
 import 'features/music_player/presentation/pages/details_page.dart';
 import 'features/music_player/presentation/pages/playlist_page.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_player/features/music_player/domain/entities/song.dart';
+import '../../features/music_player/domain/entities/song.dart';
 
 /// shows memory image if available else fetch an image from internet
 ImageProvider<Object> getImageProvider(Song song) {

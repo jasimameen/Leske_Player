@@ -1,5 +1,6 @@
-import 'package:music_player/features/music_player/domain/entities/song.dart';
 import 'package:on_audio_query/on_audio_query.dart' as raw;
+
+import '../../domain/entities/song.dart';
 
 class SongModel extends Song {
    SongModel({

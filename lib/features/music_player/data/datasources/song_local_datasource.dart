@@ -1,6 +1,5 @@
-import 'package:music_player/core/error/exceptions.dart';
-import 'package:music_player/features/music_player/data/models/song_model.dart';
-import 'package:music_player/features/music_player/domain/entities/song.dart';
+import '../../../../core/error/exceptions.dart';
+import '../models/song_model.dart';
 import 'package:on_audio_query/on_audio_query.dart' as audio;
 
 abstract class SongLocalDataSource {
