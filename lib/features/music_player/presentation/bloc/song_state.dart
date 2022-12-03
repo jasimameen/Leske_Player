@@ -6,6 +6,7 @@ class SongState with _$SongState {
   factory SongState({
     required List<Song> songList,
     required Song? currentSong,
+    required Set<int> favorates, // contains song ids
     required bool isPlaying,
     required bool isError,
     required bool isLoading,
@@ -15,6 +16,7 @@ class SongState with _$SongState {
   factory SongState.initial() => SongState(
         songList: [],
         currentSong: null,
+        favorates: {},
         isPlaying: false,
         isError: false,
         isLoading: false,

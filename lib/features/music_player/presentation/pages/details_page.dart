@@ -237,9 +237,23 @@ class _BottomBar extends StatelessWidget {
           ),
 
           // favorate icon
-          IconButton(
-            icon: const Icon(CupertinoIcons.heart_fill),
-            onPressed: () {},
+          BlocBuilder<SongBloc, SongState>(
+            buildWhen: (previous, current) {
+              return previous.favorates.hashCode != current.favorates.hashCode;
+            },
+            builder: (context, state) {
+              final song = state.currentSong!;
+              final bool isFavorate = state.favorates.contains(song.id);
+              return IconButton(
+                icon: isFavorate
+                    ? const Icon(CupertinoIcons.heart_fill, color: Colors.pink)
+                    : const Icon(CupertinoIcons.heart),
+                onPressed: () {
+                  // toggle favorate
+                  context.read<SongBloc>().add(SongEvent.favorate(song));
+                },
+              );
+            },
           ),
         ],
       ),

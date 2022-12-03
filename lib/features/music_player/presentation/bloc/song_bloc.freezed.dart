@@ -20,6 +20,7 @@ mixin _$SongEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -30,6 +31,7 @@ mixin _$SongEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -40,6 +42,7 @@ mixin _$SongEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -51,6 +54,7 @@ mixin _$SongEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -61,6 +65,7 @@ mixin _$SongEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -71,6 +76,7 @@ mixin _$SongEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -137,6 +143,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -150,6 +157,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -163,6 +171,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -180,6 +189,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -193,6 +203,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -206,6 +217,7 @@ class _$_GetLocalSongs implements _GetLocalSongs {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -289,6 +301,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -302,6 +315,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -315,6 +329,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -332,6 +347,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -345,6 +361,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -358,6 +375,7 @@ class _$_ShowSongDetails implements _ShowSongDetails {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -377,6 +395,169 @@ abstract class _ShowSongDetails implements SongEvent {
   Song get song;
   @JsonKey(ignore: true)
   _$$_ShowSongDetailsCopyWith<_$_ShowSongDetails> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_FavorateCopyWith<$Res> {
+  factory _$$_FavorateCopyWith(
+          _$_Favorate value, $Res Function(_$_Favorate) then) =
+      __$$_FavorateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Song song});
+}
+
+/// @nodoc
+class __$$_FavorateCopyWithImpl<$Res>
+    extends _$SongEventCopyWithImpl<$Res, _$_Favorate>
+    implements _$$_FavorateCopyWith<$Res> {
+  __$$_FavorateCopyWithImpl(
+      _$_Favorate _value, $Res Function(_$_Favorate) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? song = null,
+  }) {
+    return _then(_$_Favorate(
+      null == song
+          ? _value.song
+          : song // ignore: cast_nullable_to_non_nullable
+              as Song,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Favorate implements _Favorate {
+  const _$_Favorate(this.song);
+
+  @override
+  final Song song;
+
+  @override
+  String toString() {
+    return 'SongEvent.favorate(song: $song)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Favorate &&
+            (identical(other.song, song) || other.song == song));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, song);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_FavorateCopyWith<_$_Favorate> get copyWith =>
+      __$$_FavorateCopyWithImpl<_$_Favorate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLocalSongs,
+    required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
+    required TResult Function(Song song) playOrPauseSong,
+    required TResult Function() playNextSong,
+    required TResult Function() playPreviousSong,
+    required TResult Function(Duration duration) seekTo,
+  }) {
+    return favorate(song);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getLocalSongs,
+    TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
+    TResult? Function(Song song)? playOrPauseSong,
+    TResult? Function()? playNextSong,
+    TResult? Function()? playPreviousSong,
+    TResult? Function(Duration duration)? seekTo,
+  }) {
+    return favorate?.call(song);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLocalSongs,
+    TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
+    TResult Function(Song song)? playOrPauseSong,
+    TResult Function()? playNextSong,
+    TResult Function()? playPreviousSong,
+    TResult Function(Duration duration)? seekTo,
+    required TResult orElse(),
+  }) {
+    if (favorate != null) {
+      return favorate(song);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLocalSongs value) getLocalSongs,
+    required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
+    required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
+    required TResult Function(_PlayNextSong value) playNextSong,
+    required TResult Function(_PlayPreviousSong value) playPreviousSong,
+    required TResult Function(_SeekTo value) seekTo,
+  }) {
+    return favorate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetLocalSongs value)? getLocalSongs,
+    TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
+    TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult? Function(_PlayNextSong value)? playNextSong,
+    TResult? Function(_PlayPreviousSong value)? playPreviousSong,
+    TResult? Function(_SeekTo value)? seekTo,
+  }) {
+    return favorate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLocalSongs value)? getLocalSongs,
+    TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
+    TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
+    TResult Function(_PlayNextSong value)? playNextSong,
+    TResult Function(_PlayPreviousSong value)? playPreviousSong,
+    TResult Function(_SeekTo value)? seekTo,
+    required TResult orElse(),
+  }) {
+    if (favorate != null) {
+      return favorate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Favorate implements SongEvent {
+  const factory _Favorate(final Song song) = _$_Favorate;
+
+  Song get song;
+  @JsonKey(ignore: true)
+  _$$_FavorateCopyWith<_$_Favorate> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -446,6 +627,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -459,6 +641,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -472,6 +655,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -489,6 +673,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -502,6 +687,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -515,6 +701,7 @@ class _$_PlayOrPauseSong implements _PlayOrPauseSong {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -577,6 +764,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -590,6 +778,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -603,6 +792,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -620,6 +810,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -633,6 +824,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -646,6 +838,7 @@ class _$_PlayNextSong implements _PlayNextSong {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -703,6 +896,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -716,6 +910,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -729,6 +924,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -746,6 +942,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -759,6 +956,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -772,6 +970,7 @@ class _$_PlayPreviousSong implements _PlayPreviousSong {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -854,6 +1053,7 @@ class _$_SeekTo implements _SeekTo {
   TResult when<TResult extends Object?>({
     required TResult Function() getLocalSongs,
     required TResult Function(Song song) showSongDetails,
+    required TResult Function(Song song) favorate,
     required TResult Function(Song song) playOrPauseSong,
     required TResult Function() playNextSong,
     required TResult Function() playPreviousSong,
@@ -867,6 +1067,7 @@ class _$_SeekTo implements _SeekTo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getLocalSongs,
     TResult? Function(Song song)? showSongDetails,
+    TResult? Function(Song song)? favorate,
     TResult? Function(Song song)? playOrPauseSong,
     TResult? Function()? playNextSong,
     TResult? Function()? playPreviousSong,
@@ -880,6 +1081,7 @@ class _$_SeekTo implements _SeekTo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocalSongs,
     TResult Function(Song song)? showSongDetails,
+    TResult Function(Song song)? favorate,
     TResult Function(Song song)? playOrPauseSong,
     TResult Function()? playNextSong,
     TResult Function()? playPreviousSong,
@@ -897,6 +1099,7 @@ class _$_SeekTo implements _SeekTo {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocalSongs value) getLocalSongs,
     required TResult Function(_ShowSongDetails value) showSongDetails,
+    required TResult Function(_Favorate value) favorate,
     required TResult Function(_PlayOrPauseSong value) playOrPauseSong,
     required TResult Function(_PlayNextSong value) playNextSong,
     required TResult Function(_PlayPreviousSong value) playPreviousSong,
@@ -910,6 +1113,7 @@ class _$_SeekTo implements _SeekTo {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetLocalSongs value)? getLocalSongs,
     TResult? Function(_ShowSongDetails value)? showSongDetails,
+    TResult? Function(_Favorate value)? favorate,
     TResult? Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult? Function(_PlayNextSong value)? playNextSong,
     TResult? Function(_PlayPreviousSong value)? playPreviousSong,
@@ -923,6 +1127,7 @@ class _$_SeekTo implements _SeekTo {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocalSongs value)? getLocalSongs,
     TResult Function(_ShowSongDetails value)? showSongDetails,
+    TResult Function(_Favorate value)? favorate,
     TResult Function(_PlayOrPauseSong value)? playOrPauseSong,
     TResult Function(_PlayNextSong value)? playNextSong,
     TResult Function(_PlayPreviousSong value)? playPreviousSong,
@@ -949,6 +1154,8 @@ abstract class _SeekTo implements SongEvent {
 mixin _$SongState {
   List<Song> get songList => throw _privateConstructorUsedError;
   Song? get currentSong => throw _privateConstructorUsedError;
+  Set<int> get favorates =>
+      throw _privateConstructorUsedError; // contains song ids
   bool get isPlaying => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
@@ -968,6 +1175,7 @@ abstract class $SongStateCopyWith<$Res> {
   $Res call(
       {List<Song> songList,
       Song? currentSong,
+      Set<int> favorates,
       bool isPlaying,
       bool isError,
       bool isLoading,
@@ -989,6 +1197,7 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
   $Res call({
     Object? songList = null,
     Object? currentSong = freezed,
+    Object? favorates = null,
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
@@ -1003,6 +1212,10 @@ class _$SongStateCopyWithImpl<$Res, $Val extends SongState>
           ? _value.currentSong
           : currentSong // ignore: cast_nullable_to_non_nullable
               as Song?,
+      favorates: null == favorates
+          ? _value.favorates
+          : favorates // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -1033,6 +1246,7 @@ abstract class _$$_SongStateCopyWith<$Res> implements $SongStateCopyWith<$Res> {
   $Res call(
       {List<Song> songList,
       Song? currentSong,
+      Set<int> favorates,
       bool isPlaying,
       bool isError,
       bool isLoading,
@@ -1052,6 +1266,7 @@ class __$$_SongStateCopyWithImpl<$Res>
   $Res call({
     Object? songList = null,
     Object? currentSong = freezed,
+    Object? favorates = null,
     Object? isPlaying = null,
     Object? isError = null,
     Object? isLoading = null,
@@ -1066,6 +1281,10 @@ class __$$_SongStateCopyWithImpl<$Res>
           ? _value.currentSong
           : currentSong // ignore: cast_nullable_to_non_nullable
               as Song?,
+      favorates: null == favorates
+          ? _value._favorates
+          : favorates // ignore: cast_nullable_to_non_nullable
+              as Set<int>,
       isPlaying: null == isPlaying
           ? _value.isPlaying
           : isPlaying // ignore: cast_nullable_to_non_nullable
@@ -1092,11 +1311,13 @@ class _$_SongState implements _SongState {
   _$_SongState(
       {required final List<Song> songList,
       required this.currentSong,
+      required final Set<int> favorates,
       required this.isPlaying,
       required this.isError,
       required this.isLoading,
       required this.positionStream})
-      : _songList = songList;
+      : _songList = songList,
+        _favorates = favorates;
 
   final List<Song> _songList;
   @override
@@ -1107,6 +1328,14 @@ class _$_SongState implements _SongState {
 
   @override
   final Song? currentSong;
+  final Set<int> _favorates;
+  @override
+  Set<int> get favorates {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_favorates);
+  }
+
+// contains song ids
   @override
   final bool isPlaying;
   @override
@@ -1118,7 +1347,7 @@ class _$_SongState implements _SongState {
 
   @override
   String toString() {
-    return 'SongState(songList: $songList, currentSong: $currentSong, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading, positionStream: $positionStream)';
+    return 'SongState(songList: $songList, currentSong: $currentSong, favorates: $favorates, isPlaying: $isPlaying, isError: $isError, isLoading: $isLoading, positionStream: $positionStream)';
   }
 
   @override
@@ -1129,6 +1358,8 @@ class _$_SongState implements _SongState {
             const DeepCollectionEquality().equals(other._songList, _songList) &&
             (identical(other.currentSong, currentSong) ||
                 other.currentSong == currentSong) &&
+            const DeepCollectionEquality()
+                .equals(other._favorates, _favorates) &&
             (identical(other.isPlaying, isPlaying) ||
                 other.isPlaying == isPlaying) &&
             (identical(other.isError, isError) || other.isError == isError) &&
@@ -1143,6 +1374,7 @@ class _$_SongState implements _SongState {
       runtimeType,
       const DeepCollectionEquality().hash(_songList),
       currentSong,
+      const DeepCollectionEquality().hash(_favorates),
       isPlaying,
       isError,
       isLoading,
@@ -1159,6 +1391,7 @@ abstract class _SongState implements SongState {
   factory _SongState(
       {required final List<Song> songList,
       required final Song? currentSong,
+      required final Set<int> favorates,
       required final bool isPlaying,
       required final bool isError,
       required final bool isLoading,
@@ -1169,6 +1402,8 @@ abstract class _SongState implements SongState {
   @override
   Song? get currentSong;
   @override
+  Set<int> get favorates;
+  @override // contains song ids
   bool get isPlaying;
   @override
   bool get isError;

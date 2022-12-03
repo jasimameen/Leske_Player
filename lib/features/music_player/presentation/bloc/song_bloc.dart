@@ -77,6 +77,21 @@ class SongBloc extends Bloc<SongEvent, SongState> {
       },
     );
 
+    /// toggle favorate
+    on<_Favorate>(
+      (event, emit) {
+        int id = event.song.id;
+        
+        if (state.favorates.contains(id)) {
+          state.favorates.remove(id); // remove from favorates
+        } else {
+          state.favorates.add(id); // add to favorates
+        }
+
+        emit(state);
+      },
+    );
+
     on<_PlayOrPauseSong>(
       (event, emit) async {
         if (state.currentSong != event.song) {
